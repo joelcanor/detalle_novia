@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Elizabeth 💜 Mi Reina de Clash</title>
+    <title>Nuestro Fin de Semana Mágico 💙</title>
     <style>
         * {
             margin: 0;
@@ -12,351 +12,230 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
             overflow-x: hidden;
         }
 
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('clash_conminovia1.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.25;
-            z-index: -1;
-            filter: blur(2px);
-        }
-
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        .header {
+        header {
             text-align: center;
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 20px;
-            margin-bottom: 30px;
-            animation: fadeIn 1s ease-in;
-            border: 3px solid rgba(255, 215, 0, 0.5);
+            padding: 60px 20px;
+            animation: fadeIn 2s ease-in;
         }
 
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-            color: #ffd700;
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .header p {
-            font-size: 1.2em;
-            color: #ff69b4;
-        }
-
-        .intro-text {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
-            text-align: center;
+        .subtitle {
             font-size: 1.3em;
-            line-height: 1.8;
-            animation: slideUp 1s ease-out;
-            border: 2px solid rgba(255, 105, 180, 0.3);
+            opacity: 0.9;
+            font-style: italic;
         }
 
-        .card-section {
-            background: rgba(0, 0, 0, 0.75);
-            padding: 30px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: slideIn 0.8s ease-out forwards;
+        .section {
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideUp 1s ease-out;
         }
 
-        .card-section:nth-child(even) {
-            flex-direction: row-reverse;
-            transform: translateX(50px);
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #ff6b9d;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
         }
 
-        .card-section:nth-child(1) { animation-delay: 0.2s; }
-        .card-section:nth-child(2) { animation-delay: 0.4s; }
-        .card-section:nth-child(3) { animation-delay: 0.6s; }
-        .card-section:nth-child(4) { animation-delay: 0.8s; }
-        .card-section:nth-child(5) { animation-delay: 1s; }
-        .card-section:nth-child(6) { animation-delay: 1.2s; }
-        .card-section:nth-child(7) { animation-delay: 1.4s; }
+        .content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+        }
 
-        .card-image {
-            flex-shrink: 0;
-            width: 150px;
-            height: 180px;
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .media-item {
             border-radius: 15px;
             overflow: hidden;
-            border: 3px solid #ffd700;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .card-image:hover {
-            transform: scale(1.1) rotate(5deg);
+        .media-item:hover {
+            transform: scale(1.05);
         }
 
-        .card-image img {
+        .media-item video,
+        .media-item img {
             width: 100%;
-            height: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gift-section .media-item img {
+            max-height: 400px;
             object-fit: contain;
+            width: auto;
+            margin: 0 auto;
         }
 
-        .card-content {
-            flex: 1;
-        }
-
-        .card-content h2 {
-            color: #ffd700;
-            margin-bottom: 15px;
-            font-size: 1.8em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-        }
-
-        .card-content p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-        }
-
-        .final-message {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            margin-top: 40px;
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.6);
-            border: 3px solid rgba(255, 215, 0, 0.5);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .final-message h2 {
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            color: #ffd700;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
-        }
-
-        .final-message p {
-            font-size: 1.4em;
-            line-height: 1.8;
+        .highlight {
+            background: linear-gradient(120deg, #ff6b9d 0%, #c06c84 100%);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .hearts {
+            text-align: center;
             font-size: 2em;
-            margin: 20px 0;
+            margin: 40px 0;
+            animation: pulse 2s infinite;
+        }
+
+        .gift-section {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.2) 0%, rgba(245, 87, 108, 0.2) 100%);
+        }
+
+        .concert-section {
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.2) 0%, rgba(0, 242, 254, 0.2) 100%);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+            font-style: italic;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            50% { transform: scale(1.1); }
         }
 
         @media (max-width: 768px) {
-            .card-section {
-                flex-direction: column !important;
-                text-align: center;
-            }
-
-            .header h1 {
-                font-size: 1.8em;
-            }
-
-            .card-content h2 {
-                font-size: 1.4em;
-            }
-
-            .card-image {
-                width: 120px;
-                height: 150px;
-            }
+            h1 { font-size: 2em; }
+            .section { padding: 20px; }
+            .media-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="background"></div>
-    
     <div class="container">
-        <div class="header">
-            <h1>💜 Para Elizabeth 💜</h1>
-            <p>Mi Reina de Clash Royale</p>
-            <div class="hearts">💕 👑 💕</div>
-        </div>
+        <header>
+            <h1>💙 Nuestro Fin de Semana Mágico 💙</h1>
+            <p class="subtitle">El mejor fin de semana de mi vida, a tu lado mi luna, mi Eli, mi niña hermosa</p>
+        </header>
 
-        <div class="intro-text">
-            <p><strong>Oye amor, ¿sabes por qué nuestro amor tiene algo de Clash Royale?</strong></p>
-            <p>Porque cada carta representa lo que siento por ti y lo que somos juntos... 💖</p>
-        </div>
-
-        <div class="card-section">
-            <div class="card-image">
-                <img src="gigante.webp" alt="Gigante">
+        <div class="section">
+            <h2>✨ Sábado en la Feria ✨</h2>
+            <div class="content">
+                <p>Desde que salí de casa llevaba las ansias de verte, de abrazarte y de llenarte de besos, mi chiquita. Mi corazón sabía que estaba a punto de vivir algo mágico a tu lado.</p>
+                <p style="margin-top: 20px;">Estar juntos en la feria, caminar de tu mano, besarnos entre las luces, sentir tu risa y tu calor... fue <span class="highlight">perfecto</span>, mi bb. Cantamos canciones de <strong>Mago de Oz</strong>, de <strong>Jumbo</strong> y hasta de <strong>Drake Bell</strong> —aunque no nos las supiéramos del todo, sobre todo las de Jumbo 😅— pero no importaba. Lo único importante era que estaba contigo, vida mía.</p>
             </div>
-            <div class="card-content">
-                <h2>🏔️ Mi Amor es GIGANTE</h2>
-                <p>Como el gigante que protege todo a su paso, mi amor por ti es enorme, fuerte e imparable. Cada día crece más y más, y nada puede detenerlo. Eres mi torre más valiosa, Elizabeth, y la protegeré siempre.</p>
-            </div>
-        </div>
-
-        <div class="card-section">
-            <div class="card-image">
-                <img src="princesa.webp" alt="Princesa">
-            </div>
-            <div class="card-content">
-                <h2>👸 Tú eres Mi PRINCESA</h2>
-                <p>Hermosa, elegante y poderosa. Como la princesa que alcanza desde lejos, tú tocas mi corazón sin importar la distancia. Eres mi carta legendaria, la más especial de todas, la que todos desearían tener pero que solo yo tengo el privilegio de amar.</p>
+            
+            <div class="media-grid">
+                <div class="media-item">
+                    <video controls>
+                        <source src="mago_oz.mp4" type="video/mp4">
+                        Tu navegador no soporta el video.
+                    </video>
+                    <p style="text-align: center; padding: 10px;">🎸 Mago de Oz</p>
+                </div>
+                <div class="media-item">
+                    <img src="manosjuntas.jpeg" alt="Nuestras manos juntas">
+                    <p style="text-align: center; padding: 10px;">💕 Juntos para siempre</p>
+                </div>
             </div>
         </div>
 
-        <div class="card-section">
-            <div class="card-image">
-                <img src="caballero.webp" alt="Caballero">
-            </div>
-            <div class="card-content">
-                <h2>⚔️ Yo soy tu CABALLERO</h2>
-                <p>Leal, valiente y siempre a tu lado. Como el caballero que nunca falla, yo estaré contigo en cada batalla, protegiéndote de todo mal. Soy tu escudo contra las tristezas y tu espada contra los problemas. Juntos somos invencibles.</p>
+        <div class="hearts">💖 💝 💗 💓 💕</div>
+
+        <div class="section">
+            <h2>🌙 Nuestra Noche Especial 🌙</h2>
+            <div class="content">
+                <p>Después fuimos por un hot dog, llegamos cansaditos y dormimos tarde porque la pasión nos ganó... 😊 Y aun así tú te levantaste a las 6 am a trabajar, mi hermosa, mientras yo te esperaba como si ya viviéramos juntitos. Ese momento fue tan nuestro, tan íntimo, tan bonito.</p>
+                <p style="margin-top: 20px;">Aproveché para comprarte esos detallitos, mi niña: <span class="highlight">tu Stitch, el brownie, el osito rojo</span>... pequeñas cosas, pero llenas de mi cariño para ti, mi luna.</p>
             </div>
         </div>
 
-        <div class="card-section">
-            <div class="card-image">
-                <img src="valquiria.webp" alt="Valquiria">
+        <div class="section concert-section">
+            <h2>🎵 Domingo con Los Tigres del Norte 🎵</h2>
+            <div class="content">
+                <p>Venir a ver a <strong>Los Tigres del Norte</strong> contigo, mi Eli... mi grupo favorito, pero esta vez con mi novia, con mi luna. Poder dedicarte <span class="highlight">"Quiero volar contigo"</span> ahí, abrazados, fue una de esas cosas que se sienten en lo más hondo del alma, mi chiquita.</p>
+                <p style="margin-top: 20px;">Aunque perdí mi tarjeta del QRO Bus y nos tocó irnos en Uber, contigo incluso eso se hizo especial, mi bb. A tu lado todo tiene sentido, mi hermosa.</p>
             </div>
-            <div class="card-content">
-                <h2>💪 Tú eres como la VALQUIRIA</h2>
-                <p>Fuerte, trabajadora e imparable. Mi niña hermosa que no se rinde ante nada. Luchas por tus sueños con determinación y esa fuerza tuya me inspira cada día. Eres guerrera y princesa al mismo tiempo, ¡eso te hace única!</p>
-            </div>
-        </div>
-
-        <div class="card-section">
-            <div class="card-image">
-                <img src="torre.webp" alt="Torre">
-            </div>
-            <div class="card-content">
-                <h2>🏰 Nos PROTEGEMOS como Torres</h2>
-                <p>Cuando tú no estás, siento que una de mis torres se cae. Nos cuidamos mutuamente porque somos el equipo perfecto. Juntos somos más fuertes, y cuando uno está débil, el otro lo levanta. Así es nuestro amor, Elizabeth.</p>
+            
+            <div class="media-grid">
+                <div class="media-item">
+                    <video controls>
+                        <source src="tigres.mp4" type="video/mp4">
+                        Tu navegador no soporta el video.
+                    </video>
+                    <p style="text-align: center; padding: 10px;">🐯 Los Tigres del Norte</p>
+                </div>
             </div>
         </div>
 
-        <div class="card-section">
-            <div class="card-image">
-                <img src="dragon_infernal.webp" alt="Dragón Infernal">
+        <div class="hearts">🎁 🎂 🎈 🎉 ✨</div>
+
+        <div class="section gift-section">
+            <h2>🎁 Tu Regalo para Mí (24 de Noviembre) 🎁</h2>
+            <div class="content">
+                <p>Amor... dejé lo mejor para el final: <span class="highlight">tu regalo</span>, mi niña hermosa. Me encantó. Los Hot Wheels, la taza, la cartera, las cartas, <strong>y el gatito</strong>... cada detalle llevaba tu amor y tu forma tan hermosa de pensar en mí, mi Eli. No sabes cuánto lo valoro, mi bb.</p>
             </div>
-            <div class="card-content">
-                <h2>🔥 El ENEMIGO ataca como Dragón Infernal</h2>
-                <p>Los celos, las dudas, la distancia, los problemas... Como un dragón infernal o un montapuercos, intentan derribarnos. Pero no lo permitiremos, amor. Son las tropas enemigas que enfrentamos juntos.</p>
+            
+            <div class="media-grid">
+                <div class="media-item">
+                    <img src="regalodeminovia.jpeg" alt="Mi regalo de cumpleaños">
+                    <p style="text-align: center; padding: 10px;">💝 El mejor regalo</p>
+                </div>
             </div>
         </div>
 
-        <div class="card-section">
-            <div class="card-image">
-                <img src="arqueras.webp" alt="Arqueras">
-            </div>
-            <div class="card-content">
-                <h2>🏹 UNIDOS como Arqueras</h2>
-                <p>Siempre juntas, siempre apoyándose. Así somos nosotros, Elizabeth. Dos fuerzas que trabajan en equipo perfecto. Los obstáculos no nos detendrán porque avanzamos juntos, de la mano, hacia la victoria de nuestro amor.</p>
-            </div>
-        </div>
-
-        <div class="final-message">
-            <h2>👑 Victoria Royale: Nuestro Amor 👑</h2>
-            <div class="hearts">❤️ 💜 💙 💚 💛</div>
-            <p><strong>Elizabeth, mi amor:</strong></p>
-            <p>Como en Clash Royale, la vida nos pone batallas difíciles, pero mientras estemos juntos, siempre conseguiremos la Victoria Royale. Tú eres mi carta legendaria, mi reina, mi princesa, mi todo.</p>
-            <p><strong>Eres la razón por la que juego esta partida llamada vida, y contigo a mi lado, siempre ganaré. 💜</strong></p>
-            <p style="margin-top: 30px; font-size: 1.6em;">Te amo infinito, mi amor 💕👑💕</p>
-            <p style="font-size: 1.1em; margin-top: 20px; opacity: 0.9;">~ Tu Caballero que siempre te protegerá ~</p>
-        </div>
+        <footer>
+            <p>Te amo, mi niña. Te amo como nunca he amado a nadie, mi luna hermosa.</p>
+            <p style="margin-top: 20px;">Gracias por regalarme un fin de semana que voy a guardar en mi corazón para siempre, mi Eli, mi bb, mi chiquita.</p>
+            <p style="margin-top: 20px; font-size: 1.5em;">A tu lado todo tiene sentido. A tu lado la vida es más bonita, mi hermosa. 💙✨</p>
+        </footer>
     </div>
-
-    <script>
-        // Efecto de partículas de corazones
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.innerHTML = '💜';
-            heart.style.position = 'fixed';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = '100vh';
-            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-            heart.style.opacity = Math.random() * 0.5 + 0.3;
-            heart.style.pointerEvents = 'none';
-            heart.style.zIndex = '1000';
-            heart.style.transition = 'all 4s ease-in-out';
-            
-            document.body.appendChild(heart);
-            
-            setTimeout(() => {
-                heart.style.top = '-10vh';
-                heart.style.opacity = '0';
-                heart.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
-            }, 100);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 4100);
-        }
-
-        // Crear corazones cada 2 segundos
-        setInterval(createHeart, 2000);
-        
-        // Crear algunos corazones al inicio
-        for(let i = 0; i < 5; i++) {
-            setTimeout(createHeart, i * 400);
-        }
-
-        // Efecto de hover en las tarjetas
-        document.querySelectorAll('.card-section').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.02)';
-                this.style.boxShadow = '0 10px 40px rgba(255, 215, 0, 0.4)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-                this.style.boxShadow = 'none';
-            });
-        });
-    </script>
 </body>
 </html>
