@@ -3,551 +3,487 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Cumpleaños Mi Amor ❤️</title>
+    <title>Para Ti, Mi Luna</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Georgia', serif;
-            background: #000000;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            overflow-x: hidden;
-            position: relative;
         }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(220, 20, 60, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(0, 100, 255, 0.15) 0%, transparent 50%);
-            animation: backgroundShift 8s ease-in-out infinite;
-            pointer-events: none;
-        }
-        
-        @keyframes backgroundShift {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-        
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        
-        .floating-heart {
-            position: absolute;
-            font-size: 2em;
-            opacity: 0.3;
-            animation: float-up 15s infinite;
-        }
-        
-        .floating-heart:nth-child(odd) {
-            filter: drop-shadow(0 0 5px rgba(220, 20, 60, 0.8));
-        }
-        
-        .floating-heart:nth-child(even) {
-            filter: drop-shadow(0 0 5px rgba(0, 100, 255, 0.8));
-        }
-        
-        .floating-heart:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .floating-heart:nth-child(2) { left: 30%; animation-delay: 3s; }
-        .floating-heart:nth-child(3) { left: 50%; animation-delay: 1s; }
-        .floating-heart:nth-child(4) { left: 70%; animation-delay: 5s; }
-        .floating-heart:nth-child(5) { left: 90%; animation-delay: 2s; }
-        
-        @keyframes float-up {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Lock Screen Styles */
-        .lock-screen {
-            max-width: 400px;
-            background: linear-gradient(145deg, 
-                rgba(139, 0, 0, 0.3), 
-                rgba(0, 0, 0, 0.9),
-                rgba(0, 50, 150, 0.3));
-            border-radius: 30px;
-            padding: 50px;
-            box-shadow: 
-                0 0 80px rgba(220, 20, 60, 0.4),
-                0 0 80px rgba(0, 100, 255, 0.3),
-                inset 0 0 100px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 1.5s ease-in;
-            border: 3px solid;
-            border-image: linear-gradient(45deg, #DC143C, #FFD700, #0064FF) 1;
-            text-align: center;
-        }
-        
-        .lock-icon {
-            font-size: 4em;
-            margin-bottom: 20px;
-            animation: lockPulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes lockPulse {
-            0%, 100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
-            }
-            50% {
-                transform: scale(1.1);
-                filter: drop-shadow(0 0 40px rgba(255, 215, 0, 1));
-            }
-        }
-        
-        .lock-title {
-            background: linear-gradient(90deg, 
-                #FFD700 0%, 
-                #FFA500 25%,
-                #FFD700 50%,
-                #FFA500 75%,
-                #FFD700 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 2em;
-            margin-bottom: 30px;
-            animation: goldShine 3s linear infinite;
-            font-weight: bold;
-        }
-        
-        .password-input {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.1em;
-            background: rgba(0, 0, 0, 0.6);
-            border: 2px solid rgba(255, 215, 0, 0.5);
-            border-radius: 10px;
-            color: #FFD700;
-            text-align: center;
-            margin-bottom: 20px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-        
-        .password-input:focus {
-            border-color: #FFD700;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-        
-        .password-input::placeholder {
-            color: rgba(255, 215, 0, 0.5);
-        }
-        
-        .unlock-button {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.2em;
-            background: linear-gradient(90deg, #DC143C, #FFD700, #0064FF);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .unlock-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-        }
-        
-        .error-message {
-            color: #ff4444;
-            margin-top: 15px;
-            font-size: 0.9em;
-            display: none;
-            animation: shake 0.5s;
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        /* Main Content Styles */
+
         .container {
-            max-width: 900px;
-            background: linear-gradient(145deg, 
-                rgba(139, 0, 0, 0.3), 
-                rgba(0, 0, 0, 0.9),
-                rgba(0, 50, 150, 0.3));
+            max-width: 1000px;
+            background: linear-gradient(135deg, #2d2d44 0%, #1f1f3a 100%);
             border-radius: 30px;
-            padding: 50px;
-            box-shadow: 
-                0 0 80px rgba(220, 20, 60, 0.4),
-                0 0 80px rgba(0, 100, 255, 0.3),
-                inset 0 0 100px rgba(0, 0, 0, 0.5);
+            padding: 70px 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 107, 107, 0.2);
             animation: fadeIn 1.5s ease-in;
-            position: relative;
-            border: 3px solid;
-            border-image: linear-gradient(45deg, #DC143C, #FFD700, #0064FF) 1;
+            margin: 40px 0;
+            border: 2px solid rgba(255, 107, 107, 0.3);
         }
-        
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(50px) scale(0.9);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
             }
         }
-        
-        h1 {
-            background: linear-gradient(90deg, 
-                #FFD700 0%, 
-                #FFA500 25%,
-                #FFD700 50%,
-                #FFA500 75%,
-                #FFD700 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+
+        .header {
             text-align: center;
-            font-size: 3.2em;
-            margin-bottom: 30px;
-            animation: goldShine 3s linear infinite, glow 2s ease-in-out infinite;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-        
-        @keyframes goldShine {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-        
-        @keyframes glow {
-            0%, 100% {
-                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
-            }
-            50% {
-                filter: drop-shadow(0 0 40px rgba(255, 215, 0, 1));
-            }
-        }
-        
-        .heart {
-            text-align: center;
-            font-size: 4em;
-            margin: 30px 0;
-            animation: heartbeat 1.5s infinite;
-        }
-        
-        @keyframes heartbeat {
-            0%, 100% { 
-                transform: scale(1);
-                filter: drop-shadow(0 0 20px rgba(220, 20, 60, 0.8)) drop-shadow(0 0 20px rgba(0, 100, 255, 0.5));
-            }
-            25% { 
-                transform: scale(1.2);
-                filter: drop-shadow(0 0 40px rgba(220, 20, 60, 1)) drop-shadow(0 0 40px rgba(0, 100, 255, 0.8));
-            }
-        }
-        
-        .message {
-            line-height: 2;
-            color: #f0f0f0;
-            font-size: 1.15em;
-            text-align: justify;
-            margin: 30px 0;
-            text-shadow: 
-                0 0 10px rgba(220, 20, 60, 0.3),
-                0 0 10px rgba(0, 100, 255, 0.3);
-        }
-        
-        .message p {
-            margin-bottom: 20px;
-        }
-        
-        .highlight {
-            background: linear-gradient(90deg, #FFD700, #FFA500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: bold;
-            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
-        }
-        
-        .images-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .image-box {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 
-                0 10px 40px rgba(0, 0, 0, 0.8),
-                0 0 30px rgba(220, 20, 60, 0.4),
-                0 0 30px rgba(0, 100, 255, 0.3);
-            transition: all 0.4s ease;
-            border: 3px solid;
+            margin-bottom: 50px;
             position: relative;
         }
-        
-        .image-box:nth-child(1) {
-            border-image: linear-gradient(135deg, #DC143C, #FFD700) 1;
+
+        .header h1 {
+            color: #ff6b9d;
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.6), 2px 2px 4px rgba(0,0,0,0.5);
         }
-        
-        .image-box:nth-child(2) {
-            border-image: linear-gradient(135deg, #0064FF, #FFD700) 1;
-        }
-        
-        .image-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 1;
-        }
-        
-        .image-box:nth-child(1)::before {
-            background: linear-gradient(135deg, rgba(220, 20, 60, 0.3) 0%, transparent 100%);
-        }
-        
-        .image-box:nth-child(2)::before {
-            background: linear-gradient(135deg, rgba(0, 100, 255, 0.3) 0%, transparent 100%);
-        }
-        
-        .image-box:hover {
-            transform: scale(1.05) translateY(-10px);
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.9),
-                0 0 60px rgba(220, 20, 60, 0.6),
-                0 0 60px rgba(0, 100, 255, 0.5);
-        }
-        
-        .image-box:hover::before {
-            opacity: 1;
-        }
-        
-        .image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-        
-        .image-box:hover img {
-            transform: scale(1.1);
-        }
-        
-        .signature {
-            text-align: center;
-            margin-top: 50px;
-            font-style: italic;
-            color: #c0c0c0;
-            font-size: 1.3em;
-        }
-        
-        .signature p {
-            margin: 10px 0;
-        }
-        
-        .signature .name {
-            background: linear-gradient(90deg, 
-                #FFD700 0%, 
-                #FFA500 25%,
-                #FFD700 50%,
-                #FFA500 75%,
-                #FFD700 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: bold;
+
+        .header .subtitle {
+            color: #e0e0e0;
             font-size: 1.5em;
-            animation: goldShine 3s linear infinite;
-            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+            font-style: italic;
+            margin-top: 10px;
+            text-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
         }
-        
-        .decorative-line {
-            width: 70%;
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .header .icon {
+            font-size: 4em;
+            color: #ff6b6b;
+            margin: 25px 0;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        .content {
+            line-height: 2.2;
+            color: #e8e8e8;
+            font-size: 1.25em;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        .content p {
+            margin-bottom: 35px;
+            text-indent: 40px;
+        }
+
+        .content p:first-of-type {
+            text-indent: 0;
+        }
+
+        .highlight {
+            color: #ff6b9d;
+            font-weight: bold;
+            font-style: italic;
+            text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+        }
+
+        .moon {
+            color: #ffd700;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+
+        .section-title {
+            text-align: center;
+            color: #ff6b9d;
+            font-size: 2em;
+            margin: 50px 0 30px 0;
+            position: relative;
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
             height: 3px;
-            background: linear-gradient(90deg, 
-                transparent,
-                #DC143C 20%,
-                #FFD700 50%,
-                #0064FF 80%,
-                transparent);
-            margin: 30px auto;
-            box-shadow: 
-                0 0 15px rgba(220, 20, 60, 0.5),
-                0 0 15px rgba(0, 100, 255, 0.5);
-            animation: lineGlow 2s ease-in-out infinite;
+            background: linear-gradient(to right, transparent, #ff6b6b, transparent);
+            margin: 15px auto;
         }
-        
-        @keyframes lineGlow {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
+
+        .images-section {
+            margin: 50px 0;
         }
-        
-        @media (max-width: 600px) {
-            .lock-screen {
-                padding: 30px;
+
+        .image-row {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .image-container {
+            flex: 1;
+            min-width: 280px;
+            max-width: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 107, 157, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            border: 2px solid rgba(255, 107, 157, 0.4);
+        }
+
+        .image-container:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 20px 50px rgba(255, 107, 157, 0.5), 0 0 50px rgba(255, 107, 157, 0.4);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            text-align: center;
+            color: #c0c0c0;
+            font-style: italic;
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+
+        .decorative-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            font-size: 2.5em;
+            color: #ff6b6b;
+        }
+
+        .decorative-icons i {
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 5px 10px rgba(255, 107, 107, 0.3));
+        }
+
+        .decorative-icons i:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .decorative-icons i:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .decorative-icons i:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
             }
-            
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            padding: 30px 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            color: white;
+            font-size: 1.3em;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5), 0 0 40px rgba(255, 107, 157, 0.3);
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 5em;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 1.8em;
+            color: #ff6b9d;
+            font-weight: bold;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255,107,157,0.2), rgba(196,69,105,0.2));
+            border-radius: 15px;
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            box-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+        }
+
+        .footer i {
+            color: #ff6b6b;
+            margin: 0 10px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .moon-icon {
+            display: inline-block;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
             .container {
-                padding: 30px;
+                padding: 40px 25px;
             }
-            
-            h1, .lock-title {
+
+            .header h1 {
                 font-size: 2.2em;
             }
-            
-            .message {
-                font-size: 1em;
+
+            .header .subtitle {
+                font-size: 1.2em;
             }
-            
-            .heart, .lock-icon {
-                font-size: 3em;
+
+            .content {
+                font-size: 1.1em;
+            }
+
+            .content p {
+                text-indent: 20px;
+            }
+
+            .image-row {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 1.5em;
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating-hearts">
-        <div class="floating-heart">❤️</div>
-        <div class="floating-heart">💙</div>
-        <div class="floating-heart">❤️</div>
-        <div class="floating-heart">💙</div>
-        <div class="floating-heart">❤️</div>
-    </div>
-    
-    <!-- Lock Screen -->
-    <div id="lockScreen" class="lock-screen">
-        <div class="lock-icon">🔒</div>
-        <h2 class="lock-title">Mensaje Especial</h2>
-        <input 
-            type="password" 
-            id="passwordInput" 
-            class="password-input" 
-            placeholder="Ingresa la contraseña"
-            autocomplete="off"
-        >
-        <button onclick="checkPassword()" class="unlock-button">Desbloquear ❤️</button>
-        <p id="errorMessage" class="error-message">❌ Contraseña incorrecta. Intenta de nuevo.</p>
-    </div>
-    
-    <!-- Main Content -->
-    <div id="mainContent" class="container hidden">
-        <h1>Feliz Cumpleaños, Mi Amor 🎉</h1>
-        
-        <div class="heart">❤️</div>
-        
-        <div class="decorative-line"></div>
-        
-        <div class="message">
-            <p>Este es tu día especial y quería felicitarte de corazón. Deseo que sigas cumpliendo muchos años más llena de felicidad. Quiero que sepas que me hace inmensamente feliz tenerte a mi lado; saber que estás conmigo me llena de dicha.</p>
-            
-            <p>Eres la persona a la que amo con todo mi ser, la que me vuelve loco y con quien, a lo largo de estos casi 6 meses, he compartido momentos inolvidables que siempre valdrá la pena recordar. Recientemente tuve la dicha de que vinieras a verme, jeje. Fuimos por una hamburguesa, y al día siguiente te llevé a conocer la presa de Jalpan y el río Ayutla. ¿Cómo olvidar ese río? Solo nosotros sabemos lo que pasó ese día, jeje.</p>
-        </div>
-        
-        <div class="decorative-line"></div>
-        
-        <div class="images-container">
-            <div class="image-box">
-                <img src="CorazonF.png" alt="Corazón de fuego J ❤️ E" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\'%3E%3Cdefs%3E%3CradialGradient id=\'grad1\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23ff0000;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%238b0000;stop-opacity:1\' /%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill=\'%23000000\' width=\'400\' height=\'400\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'url(%23grad1)\' font-size=\'60\' font-weight=\'bold\' dy=\'.3em\'%3EJ ❤️ E%3C/text%3E%3C/svg%3E'">
-            </div>
-            <div class="image-box">
-                <img src="JyEPresa.jpg" alt="Joel y Elizabeth en la presa" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\'%3E%3Cdefs%3E%3ClinearGradient id=\'grad2\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%230064FF;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%23000066;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill=\'url(%23grad2)\' width=\'400\' height=\'400\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'%23FFD700\' font-size=\'24\' font-weight=\'bold\' dy=\'.3em\'%3ENuestro día en la presa%3C/text%3E%3C/svg%3E'">
+    <div class="container">
+        <div class="header">
+            <h1>Para Ti, Mi Luna <i class="fas fa-moon moon-icon" style="font-size: 0.8em; color: #ffd700;"></i></h1>
+            <div class="subtitle">Elizabeth, mi amor eterno</div>
+            <div class="icon">
+                <i class="fas fa-heart"></i>
             </div>
         </div>
-        
-        <div class="decorative-line"></div>
-        
-        <div class="message">
-            <p>Te amo mucho, mi vida hermosa. Espero que te guste tu regalo, que llegará en unas horas. Me haces muy feliz, mi luna. Me encantas <span class="highlight">toda, toda, toda</span>. Me vuelves loco, me encantas. Me siento triste cuando no sé de ti. Te amo, mi amor. Gracias por ser mi novia. Haré todo lo posible para que un día nos casemos, jeje.</p>
-            
-            <p>Ya lo dije muchas veces, pero nunca me cansaría de decirlo:</p>
+
+        <div class="content">
+            <p>
+                <i class="fas fa-quote-left" style="color: #764ba2; margin-right: 10px; font-size: 1.5em;"></i>
+                <span class="moon">Mi Luna</span>, Elizabeth, escribo estas palabras con el corazón rebosante de amor y emoción. Desde el primer momento en que entraste en mi vida, todo cambió. No hay forma de expresar con simples palabras lo <span class="highlight">increíblemente maravilloso que ha sido estar a tu lado</span>. Cada día contigo es un regalo que atesoro en lo más profundo de mi ser, y aunque la distancia física nos separe, nuestros corazones están más unidos que nunca.
+            </p>
+
+            <div class="decorative-icons">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-star"></i>
+            </div>
+
+            <p>
+                Muchas personas dirían que una relación a distancia es difícil, complicada, incluso imposible. Pero nosotros hemos demostrado que cuando existe amor verdadero, <span class="highlight">la distancia no es más que un simple número en un mapa</span>. Sí, ha tenido sus desafíos, sus momentos de extrañarte tanto que duele el alma, pero cada uno de esos momentos solo ha servido para hacerme valorar aún más lo que tenemos. Nuestra relación ha sido una de las experiencias más hermosas de mi vida, y no la cambiaría por nada del mundo.
+            </p>
+
+            <p>
+                Lo que más me fascina es esa sensación que me invade cada vez que sé que voy a verte. <span class="highlight">Me emociono como un niño chiquito</span> esperando el mejor regalo de Navidad. Mi corazón late más rápido, una sonrisa se dibuja en mi rostro que no puedo borrar ni aunque quisiera, y siento esa mezcla de nervios y felicidad pura que solo tú me provocas. Es como si cada reencuentro fuera la primera vez, como si el tiempo que pasamos separados solo sirviera para que mi amor por ti creciera aún más.
+            </p>
+
+            <div class="section-title">
+                <i class="fas fa-images"></i> Nuestros Momentos Inolvidables <i class="fas fa-images"></i>
+            </div>
+
+            <div class="images-section">
+                <div class="image-row">
+                    <div>
+                        <div class="image-container">
+                            <img src="Medio año.jpeg" alt="Celebrando medio año juntos">
+                        </div>
+                        <div class="image-caption">
+                            <i class="fas fa-calendar-heart"></i> Seis meses de amor infinito
+                        </div>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin: 40px 0; font-size: 1.15em; color: #c0c0c0;">
+                    Celebrar nuestro medio año juntos fue un momento especial que marcó el inicio de muchos más aniversarios por venir. Cada mes a tu lado es una bendición que celebro con todo mi corazón.
+                </p>
+
+                <div class="image-row">
+                    <div>
+                        <div class="image-container">
+                            <img src="JyEPresa.jpg" alt="Nosotros en la presa">
+                        </div>
+                        <div class="image-caption">
+                            <i class="fas fa-water"></i> Aquel día mágico en la presa
+                        </div>
+                    </div>
+                    <div>
+                        <div class="image-container">
+                            <img src="regalo6m.jpg" alt="El regalo de hoy">
+                        </div>
+                        <div class="image-caption">
+                            <i class="fas fa-gift"></i> Un detalle lleno de amor para ti
+                        </div>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin: 40px 0; font-size: 1.15em; color: #c0c0c0;">
+                    Recuerdo perfectamente ese día en la presa, el viento, tu sonrisa, la forma en que la luz del sol iluminaba tu rostro. Y hoy, con este pequeño regalo que te envié, quiero que sepas que aunque estemos lejos, siempre estás en mis pensamientos.
+                </p>
+            </div>
+
+            <div class="decorative-icons">
+                <i class="fas fa-infinity"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-infinity"></i>
+            </div>
+
+            <p>
+                Quiero que lo sepas con absoluta certeza, <span class="moon">mi Luna</span>: <span class="highlight">para mí, tú siempre vas a ser la indicada</span>. No es una frase que diga a la ligera. Es una verdad que siento en cada fibra de mi ser. Si tuviera que volver a elegir mil veces, un millón de veces, cada una de esas veces te elegiría a ti sin pensarlo dos veces. No hay duda en mi mente, no hay "qué hubiera pasado si". Tú eres mi persona, mi complemento perfecto, mi alma gemela.
+            </p>
+
+            <p>
+                Eres la mujer con la que quiero compartir todas mis alegrías y mis tristezas, mis triunfos y mis fracasos. Quiero envejecer a tu lado, despertar cada mañana viendo tu hermoso rostro, y dormir cada noche con la tranquilidad de saber que estás en mi vida. <span class="highlight">Eres mi hogar</span>, sin importar dónde estemos físicamente, porque donde estás tú, ahí está mi corazón.
+            </p>
+
+            <div class="quote-box">
+                En la inmensidad del universo, entre millones de personas, el destino nos encontró. Y no fue casualidad, fue destino. Porque almas como la tuya y la mía estaban destinadas a encontrarse.
+            </div>
+
+            <p>
+                Y ahora, lo que más me emociona es nuestro futuro juntos. <span class="highlight">Pronto nos casaremos</span>, en aproximadamente un año y medio, y no puedo describir la felicidad que siento al pensar en ese día. Imagino ese momento en que te vea caminando hacia mí, radiante, hermosa, lista para prometernos amor eterno frente a todos nuestros seres queridos. Será el día más feliz de mi vida, el día en que oficialmente comenzaremos nuestra vida como esposos.
+            </p>
+
+            <p>
+                Cada día que pasa es un día menos de espera y un día más cerca de ese momento en que ya no tengamos que despedirnos, en que la distancia deje de existir entre nosotros. Pienso en nuestro hogar juntos, en las mañanas tomando café a tu lado, en las noches viendo películas acurrucados en el sofá, en construir nuestros sueños lado a lado. <span class="highlight">Pienso en nuestra vida juntos y mi corazón se llena de esperanza y alegría</span>.
+            </p>
+
+            <div class="decorative-icons">
+                <i class="fas fa-rings-wedding"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-infinity"></i>
+                <i class="fas fa-home-heart"></i>
+            </div>
+
+            <p>
+                La distancia nos ha enseñado a valorar cada momento, cada llamada, cada mensaje. Nos ha hecho más fuertes como pareja y ha probado que nuestro amor puede superar cualquier obstáculo. Y cuando finalmente estemos juntos para siempre, <span class="highlight">cada segundo de espera habrá valido la pena</span>.
+            </p>
+
+            <p>
+                Elizabeth, <span class="moon">mi Luna</span>, gracias por ser mi luz en los días oscuros, por tu paciencia, por tu amor incondicional, por cada sonrisa que me regalas incluso a través de una pantalla. Gracias por elegirme a mí también, por creer en nosotros, por ser mi compañera en este hermoso viaje llamado vida. Te amo más de lo que las palabras pueden expresar, y te seguiré amando por toda la eternidad.
+            </p>
         </div>
-        
-        <div class="heart">💕</div>
-        
-        <div class="decorative-line"></div>
-        
-        <div class="signature">
-            <p><span class="highlight">Te amo,</span></p>
-            <p class="name">Elizabeth Victoriano</p>
-            <p style="margin-top: 15px;">Atentamente, tu novio,</p>
-            <p class="name">Joel Cano</p>
+
+        <div class="footer">
+            <i class="fas fa-heart"></i>
+            Te amo infinitamente, mi Luna
+            <i class="fas fa-heart"></i>
+            <div style="margin-top: 20px; font-size: 0.7em; color: #c0c0c0;">
+                Tuyo por siempre, hasta que la Luna deje de brillar
+                <i class="fas fa-moon" style="color: #ffd700; font-size: 1.2em;"></i>
+            </div>
         </div>
     </div>
-    
+
     <script>
-        const passwordInput = document.getElementById('passwordInput');
-        const errorMessage = document.getElementById('errorMessage');
-        
-        // Allow Enter key to submit
-        passwordInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkPassword();
-            }
-        });
-        
-        function checkPassword() {
-            const password = passwordInput.value;
+        // Crear corazones flotantes
+        function createHeart() {
+            const heart = document.createElement('div');
+            const icons = ['fa-heart', 'fa-moon', 'fa-star'];
+            const randomIcon = icons[Math.floor(Math.random() * icons.length)];
             
-            if (password === 'JyEPresa') {
-                document.getElementById('lockScreen').classList.add('hidden');
-                document.getElementById('mainContent').classList.remove('hidden');
-            } else {
-                errorMessage.style.display = 'block';
-                passwordInput.value = '';
-                passwordInput.style.animation = 'shake 0.5s';
-                setTimeout(() => {
-                    passwordInput.style.animation = '';
-                    errorMessage.style.display = 'none';
-                }, 2000);
-            }
+            heart.innerHTML = `<i class="fas ${randomIcon}"></i>`;
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.bottom = '-50px';
+            heart.style.fontSize = Math.random() * 25 + 15 + 'px';
+            heart.style.color = randomIcon === 'fa-moon' ? '#ffd700' : '#ff6b6b';
+            heart.style.opacity = '0.7';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '1000';
+            heart.style.animation = `rise ${Math.random() * 4 + 6}s linear`;
+            heart.style.filter = 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.5))';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
         }
+
+        // Crear animación CSS para los elementos flotantes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rise {
+                to {
+                    bottom: 110vh;
+                    opacity: 0;
+                    transform: translateX(${Math.random() * 100 - 50}px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Generar elementos flotantes cada cierto tiempo
+        setInterval(createHeart, 1500);
+
+        // Efecto de partículas al hacer hover en las imágenes
+        document.querySelectorAll('.image-container').forEach(container => {
+            container.addEventListener('mouseenter', () => {
+                for(let i = 0; i < 5; i++) {
+                    setTimeout(() => createHeart(), i * 100);
+                }
+            });
+        });
     </script>
 </body>
 </html>
