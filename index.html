@@ -1,489 +1,467 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ti, Mi Luna</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>💌 Amor Secreto</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg1: #030a18;
+  --rose: #f72585;
+  --rose-bright: #ff6db3;
+  --rose-deep: #c91066;
+  --blue: #4361ee;
+  --blue-deep: #2d46c7;
+  --blue-bright: #7b9fff;
+  --sky: #4cc9f0;
+  --gold: #ffd166;
+  --cream: #fff0f8;
+  --white: #ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Lato',sans-serif;}
+body{background:var(--bg1);color:var(--white);}
+#cv{position:fixed;inset:0;pointer-events:none;z-index:0;}
 
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+/* SCREENS */
+.scr{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .55s ease;z-index:10;padding:1rem;overflow:hidden;}
+.scr.on{opacity:1;pointer-events:all;}
 
-        .container {
-            max-width: 1000px;
-            background: linear-gradient(135deg, #2d2d44 0%, #1f1f3a 100%);
-            border-radius: 30px;
-            padding: 70px 50px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 107, 107, 0.2);
-            animation: fadeIn 1.5s ease-in;
-            margin: 40px 0;
-            border: 2px solid rgba(255, 107, 107, 0.3);
-        }
+/* ── KEY ── */
+#sk{background:radial-gradient(ellipse at 35% 40%,#0a1540 0%,#060820 55%,#02050f 100%);flex-direction:column;}
+.kg{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;}
+.kg1{width:450px;height:450px;background:rgba(247,37,133,.2);top:-80px;right:-100px;}
+.kg2{width:380px;height:380px;background:rgba(67,97,238,.2);bottom:-60px;left:-80px;}
+.kg3{width:220px;height:220px;background:rgba(76,201,240,.1);top:50%;left:50%;transform:translate(-50%,-50%);}
+.kbox{position:relative;z-index:2;text-align:center;max-width:420px;width:100%;animation:fin .9s cubic-bezier(.2,.9,.3,1) both;}
+@keyframes fin{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.lk{font-size:4rem;margin-bottom:.8rem;animation:pg 2s ease infinite;display:block;}
+@keyframes pg{0%,100%{transform:scale(1);filter:drop-shadow(0 0 8px rgba(247,37,133,.5))}50%{transform:scale(1.1);filter:drop-shadow(0 0 22px rgba(247,37,133,.9))}}
+.kt{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,6vw,2.8rem);font-weight:900;background:linear-gradient(135deg,#f72585,#7b9fff,#4cc9f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem;line-height:1.1;}
+.ks{font-size:.85rem;color:rgba(180,210,255,.5);letter-spacing:.15em;text-transform:uppercase;margin-bottom:2rem;}
+.kdsp{display:flex;justify-content:center;gap:.7rem;margin-bottom:1.8rem;}
+.kdot{width:16px;height:16px;border-radius:50%;border:2px solid rgba(100,150,255,.4);background:transparent;transition:all .25s;}
+.kdot.f{background:linear-gradient(135deg,#f72585,#4361ee);border-color:transparent;box-shadow:0 0 14px rgba(247,37,133,.7);}
+.kdot.err{background:#ff4444;border-color:#ff4444;animation:shk .3s ease;}
+@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.kpad{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;max-width:300px;margin:0 auto 1.5rem;}
+.kb{aspect-ratio:1;border-radius:16px;background:rgba(255,255,255,.06);border:1.5px solid rgba(100,150,255,.2);color:#fff;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;}
+.kb:hover,.kb:active{background:linear-gradient(135deg,rgba(247,37,133,.3),rgba(67,97,238,.3));border-color:var(--rose);transform:scale(.95);box-shadow:0 0 20px rgba(247,37,133,.4);}
+.kb.wide{grid-column:span 2;aspect-ratio:auto;padding:.8rem;font-size:.9rem;}
+.kh{color:rgba(150,190,255,.38);font-size:.78rem;letter-spacing:.08em;margin-top:.5rem;font-style:italic;}
+.ke{min-height:1.2em;margin-top:.5rem;font-size:.85rem;transition:opacity .3s;}
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* ── MENU ── */
+#sm{background:radial-gradient(ellipse at 70% 30%,#0d1a45 0%,#060d22 55%,#02040f 100%);flex-direction:column;gap:0;overflow-y:auto;align-items:center;justify-content:flex-start;padding:2rem 1rem 3rem;}
+.mbg1{position:fixed;width:380px;height:380px;background:rgba(247,37,133,.1);top:-80px;right:-80px;border-radius:50%;filter:blur(80px);pointer-events:none;}
+.mbg2{position:fixed;width:320px;height:320px;background:rgba(67,97,238,.13);bottom:-60px;left:-60px;border-radius:50%;filter:blur(80px);pointer-events:none;}
+.pbar{display:flex;align-items:center;gap:.8rem;max-width:520px;width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(100,150,255,.18);border-radius:14px;padding:.8rem 1.2rem;margin-bottom:1.5rem;animation:fin .7s ease both;}
+.pav{font-size:1.8rem;}
+.pi{flex:1;}
+.pn{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--cream);}
+.pl{font-size:.66rem;color:rgba(150,200,255,.4);letter-spacing:.1em;margin-top:.1rem;}
+.xo{height:6px;background:rgba(255,255,255,.08);border-radius:3px;margin-top:.4rem;overflow:hidden;}
+.xi{height:100%;border-radius:3px;background:linear-gradient(90deg,#f72585,#4361ee,#4cc9f0);transition:width .8s;}
+.ph{font-size:1rem;letter-spacing:-.1em;}
+.mhd{text-align:center;margin-bottom:1.5rem;animation:fin .7s ease .1s both;}
+.mhr{font-size:1.2rem;letter-spacing:.3em;margin-bottom:.4rem;background:linear-gradient(90deg,#f72585,#4cc9f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:pg 3s ease infinite;}
+.mt{font-family:'Playfair Display',serif;font-size:clamp(2rem,7vw,3.2rem);font-weight:900;background:linear-gradient(135deg,#f72585 0%,#7b9fff 55%,#4cc9f0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.05;}
+.mt em{font-style:italic;display:block;}
+.ms{font-size:.8rem;color:rgba(150,200,255,.38);letter-spacing:.15em;text-transform:uppercase;margin-top:.5rem;}
+.mg{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:520px;width:100%;animation:fin .7s ease .2s both;}
+.mc{background:rgba(255,255,255,.04);border:1.5px solid rgba(100,150,255,.18);border-radius:20px;padding:1.5rem 1.2rem;cursor:pointer;transition:all .25s;text-align:center;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
+.mc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(247,37,133,.15),rgba(67,97,238,.12));opacity:0;transition:opacity .25s;}
+.mc:hover,.mc:active{transform:translateY(-5px) scale(1.02);border-color:var(--blue);box-shadow:0 15px 50px rgba(67,97,238,.3);}
+.mc:hover::before,.mc:active::before{opacity:1;}
+.mc.feat{grid-column:span 2;background:linear-gradient(135deg,rgba(247,37,133,.12),rgba(67,97,238,.15));border-color:rgba(247,37,133,.45);}
+.mc.feat:hover{border-color:var(--rose);box-shadow:0 15px 50px rgba(247,37,133,.35);}
+.ce{font-size:2.3rem;margin-bottom:.7rem;display:block;}
+.ct{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--cream);margin-bottom:.3rem;}
+.cd{font-size:.75rem;color:rgba(180,210,255,.42);line-height:1.5;}
+.cbg{display:inline-block;background:linear-gradient(135deg,var(--rose),var(--blue));color:#fff;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .8rem;border-radius:999px;margin-top:.8rem;font-weight:700;}
 
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-        }
+/* ── MOMENTS ── */
+#smom{background:radial-gradient(ellipse at 30% 60%,#0f1535 0%,#060820 60%,#020408 100%);flex-direction:column;overflow-y:auto;align-items:center;justify-content:flex-start;padding:1.5rem 1rem 4rem;}
+.bbtn{background:none;border:1.5px solid rgba(100,150,255,.2);color:rgba(150,200,255,.52);border-radius:10px;padding:.5rem 1.2rem;font-size:.82rem;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;}
+.bbtn:hover{border-color:var(--blue);color:var(--blue-bright);}
+.sl{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(180,210,255,.42);margin-bottom:.5rem;display:block;}
+.stl{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,5vw,2.3rem);font-weight:900;background:linear-gradient(135deg,#f72585,#4cc9f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.tl{max-width:560px;width:100%;position:relative;}
+.tl::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#f72585,#4361ee,#4cc9f0);border-radius:1px;opacity:.38;}
+.mi{display:flex;gap:1rem;margin-bottom:1.2rem;animation:fin .6s ease both;}
+.md{position:relative;z-index:2;min-width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--blue));display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 0 15px rgba(247,37,133,.4);flex-shrink:0;}
+.mb{background:rgba(255,255,255,.05);border:1px solid rgba(100,150,255,.18);border-radius:16px;padding:1rem 1.2rem;flex:1;}
+.mdate{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(150,200,255,.38);margin-bottom:.3rem;display:block;}
+.mtl{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:.3rem;}
+.mdesc{font-size:.8rem;color:rgba(200,220,255,.48);line-height:1.55;font-style:italic;}
 
-        .header h1 {
-            color: #ff6b9d;
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            animation: pulse 2s infinite;
-            text-shadow: 0 0 20px rgba(255, 107, 157, 0.6), 2px 2px 4px rgba(0,0,0,0.5);
-        }
+/* ── QUESTIONS ── */
+#sq{background:radial-gradient(ellipse at 60% 30%,#0d1235 0%,#06091a 55%,#020308 100%);flex-direction:column;gap:0;overflow-y:auto;align-items:center;justify-content:flex-start;padding:1rem;}
+.qhd{position:sticky;top:0;z-index:50;width:100%;max-width:600px;padding:.8rem 1rem;background:rgba(3,6,20,.9);backdrop-filter:blur(15px);border-bottom:1px solid rgba(100,150,255,.15);display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
+.qbb{background:none;border:none;color:rgba(150,200,255,.6);font-size:1.3rem;cursor:pointer;padding:.2rem .5rem;transition:color .2s;-webkit-tap-highlight-color:transparent;}
+.qbb:hover{color:var(--blue-bright);}
+.qpi{flex:1;}
+.qpl{font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(150,200,255,.45);margin-bottom:.3rem;}
+.qpo{height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;}
+.qpi2{height:100%;border-radius:4px;background:linear-gradient(90deg,#f72585,#4361ee,#4cc9f0);transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 12px rgba(247,37,133,.5);}
+.qcn{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--blue-bright);min-width:3rem;text-align:right;}
+.qst{width:100%;max-width:600px;padding:0 .5rem 1rem;}
+.qcg{background:linear-gradient(160deg,rgba(15,25,70,.65),rgba(6,10,30,.88));border:1.5px solid rgba(100,150,255,.25);border-radius:24px;padding:clamp(1.5rem,5vw,2.5rem);position:relative;overflow:hidden;margin-bottom:1.5rem;box-shadow:0 20px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(150,180,255,.08);}
+.qcg::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,rgba(67,97,238,.18),transparent 70%);border-radius:50%;}
+.qcg::after{content:'';position:absolute;bottom:-50px;left:-50px;width:180px;height:180px;background:radial-gradient(circle,rgba(247,37,133,.12),transparent 70%);border-radius:50%;}
+.qnb{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,var(--blue-deep),var(--blue));color:#fff;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .9rem;border-radius:999px;margin-bottom:1.2rem;font-weight:700;box-shadow:0 4px 15px rgba(67,97,238,.45);}
+.qib{font-size:3rem;margin-bottom:1rem;display:block;animation:bob 3s ease infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.qtx{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,3.5vw,1.6rem);font-weight:700;color:var(--cream);line-height:1.45;margin-bottom:1rem;}
+.qtg{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(150,200,255,.38);}
+/* special opts */
+.qoh{font-family:'Playfair Display',serif;font-size:.85rem;font-style:italic;color:rgba(150,200,255,.5);margin-bottom:.8rem;}
+.qog{display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem;margin:0 0 .8rem;}
+.qob{background:rgba(67,97,238,.1);border:1.5px solid rgba(100,150,255,.22);border-radius:12px;padding:.75rem .65rem;color:rgba(200,220,255,.78);font-size:.8rem;line-height:1.4;cursor:pointer;transition:all .2s;text-align:center;font-family:'Playfair Display',serif;-webkit-tap-highlight-color:transparent;}
+.qob:hover,.qob.sel{background:linear-gradient(135deg,rgba(247,37,133,.22),rgba(67,97,238,.28));border-color:var(--rose);color:var(--cream);box-shadow:0 0 15px rgba(247,37,133,.22);font-weight:700;}
+/* answer box */
+.ab{width:100%;max-width:600px;padding:0 .5rem;margin-bottom:1.2rem;}
+.ab textarea{width:100%;background:rgba(255,255,255,.05);border:2px solid rgba(100,150,255,.2);border-radius:16px;color:var(--cream);font-family:'Lato',sans-serif;font-size:1rem;line-height:1.7;padding:1.1rem 1.3rem;resize:none;min-height:120px;outline:none;transition:border-color .25s,box-shadow .25s;-webkit-appearance:none;}
+.ab textarea::placeholder{color:rgba(150,190,255,.28);font-style:italic;}
+.ab textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(67,97,238,.18);}
+.ac{text-align:right;font-size:.7rem;color:rgba(150,190,255,.28);margin-top:.4rem;padding-right:.2rem;}
+.qa{display:flex;gap:.8rem;max-width:600px;width:100%;padding:0 .5rem;}
+.bsa{flex:1;background:linear-gradient(135deg,#1a2f9e,#4361ee,#7b9fff);border:none;border-radius:14px;color:#fff;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;padding:1rem 1.5rem;cursor:pointer;transition:all .2s;box-shadow:0 8px 30px rgba(67,97,238,.45);-webkit-tap-highlight-color:transparent;}
+.bsa:hover,.bsa:active{transform:translateY(-2px);box-shadow:0 12px 40px rgba(67,97,238,.65);}
+.bsk{background:rgba(255,255,255,.05);border:1.5px solid rgba(100,150,255,.2);border-radius:14px;color:rgba(150,200,255,.52);font-size:.82rem;padding:1rem 1.1rem;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;white-space:nowrap;}
+.bsk:hover{border-color:var(--blue);color:var(--blue-bright);}
+.qnd{display:flex;justify-content:center;gap:.5rem;width:100%;max-width:600px;padding:1.2rem .5rem 0;flex-wrap:wrap;}
+.nd{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.1);cursor:pointer;transition:all .2s;border:none;padding:0;-webkit-tap-highlight-color:transparent;}
+.nd.dn{background:linear-gradient(135deg,var(--rose),var(--blue));}
+.nd.cur{background:var(--blue-bright);width:28px;border-radius:5px;box-shadow:0 0 10px rgba(123,159,255,.7);}
 
-        .header .subtitle {
-            color: #e0e0e0;
-            font-size: 1.5em;
-            font-style: italic;
-            margin-top: 10px;
-            text-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
-        }
+/* ── CARTA ── */
+#sca{background:radial-gradient(ellipse at 40% 60%,#0f0a30 0%,#06050e 60%,#010208 100%);flex-direction:column;overflow-y:auto;align-items:center;justify-content:flex-start;padding:1.5rem 1rem 4rem;}
+.cenv{max-width:600px;width:100%;background:linear-gradient(160deg,rgba(15,20,60,.55),rgba(6,8,25,.88));border:1.5px solid rgba(100,150,255,.25);border-radius:24px;padding:clamp(2rem,6vw,3.5rem);box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(150,180,255,.08);position:relative;overflow:hidden;}
+.cenv::before{content:'♥';position:absolute;font-size:25vw;color:rgba(100,150,255,.03);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.cfr{font-family:'Dancing Script',cursive;color:var(--blue-bright);font-size:1rem;letter-spacing:.05em;margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem;}
+.ch{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,5vw,2rem);font-weight:700;background:linear-gradient(135deg,#f72585,#4cc9f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1.5rem;line-height:1.2;}
+.cb{font-family:'Playfair Display',serif;font-size:clamp(.95rem,2.5vw,1.1rem);font-style:italic;font-weight:400;color:rgba(220,235,255,.7);line-height:2;margin-bottom:2rem;}
+.cb p{margin-bottom:1em;}
+.cfi{font-family:'Dancing Script',cursive;color:var(--rose-bright);font-size:clamp(1.2rem,4vw,1.7rem);text-align:right;}
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
+/* ── VALORES ── */
+#sva{background:radial-gradient(ellipse at 70% 20%,#0a1535 0%,#04060e 60%,#010108 100%);flex-direction:column;overflow-y:auto;align-items:center;justify-content:flex-start;padding:1.5rem 1rem 4rem;}
+.vg{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:560px;width:100%;}
+.vc{background:rgba(255,255,255,.04);border:1.5px solid rgba(100,150,255,.14);border-radius:18px;padding:1.4rem 1.1rem;text-align:center;transition:all .25s;animation:fin .6s ease both;}
+.vc:hover{transform:translateY(-4px);border-color:rgba(67,97,238,.5);box-shadow:0 15px 40px rgba(67,97,238,.18);}
+.ve{font-size:2rem;display:block;margin-bottom:.7rem;}
+.vn{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--cream);margin-bottom:.3rem;}
+.vd{font-size:.72rem;color:rgba(170,200,255,.38);line-height:1.5;font-style:italic;}
 
-        .header .icon {
-            font-size: 4em;
-            color: #ff6b6b;
-            margin: 25px 0;
-            animation: heartbeat 1.5s infinite;
-        }
+/* ── COUNTER ── */
+#sco{background:radial-gradient(ellipse at 50% 50%,#0a1535 0%,#04060e 60%,#010108 100%);flex-direction:column;overflow-y:auto;align-items:center;justify-content:flex-start;padding:1.5rem 1rem 4rem;}
+.coh{max-width:560px;width:100%;background:linear-gradient(160deg,rgba(15,25,70,.55),rgba(6,10,30,.88));border:1.5px solid rgba(100,150,255,.2);border-radius:24px;padding:2.5rem 2rem;text-align:center;margin-bottom:1.5rem;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.cob{font-size:3.5rem;margin-bottom:1rem;animation:pg 2s infinite;}
+.cot{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,5vw,1.9rem);font-weight:700;background:linear-gradient(135deg,#f72585,#4cc9f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem;}
+.cos{font-size:.76rem;color:rgba(150,200,255,.32);letter-spacing:.1em;margin-bottom:1.5rem;}
+.cog{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:560px;width:100%;}
+.cob2{background:rgba(255,255,255,.04);border:1.5px solid rgba(100,150,255,.14);border-radius:16px;padding:1.5rem 1rem;text-align:center;position:relative;overflow:hidden;}
+.cob2::after{content:'';position:absolute;bottom:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,#f72585,#4361ee,#4cc9f0);}
+.cn{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,8vw,3.8rem);font-weight:900;background:linear-gradient(135deg,#f72585,#4cc9f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;display:block;}
+.cl{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(150,200,255,.32);margin-top:.4rem;display:block;}
 
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            25% {
-                transform: scale(1.2);
-            }
-            50% {
-                transform: scale(1);
-            }
-        }
+/* ── WIN ── */
+#sw{background:radial-gradient(ellipse at 50% 50%,#0e1540 0%,#070920 60%,#02030a 100%);flex-direction:column;text-align:center;overflow-y:auto;padding:2rem 1.5rem 4rem;align-items:center;justify-content:center;}
+.wca{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.wi{font-size:5rem;margin-bottom:1rem;animation:pg 1.5s infinite;}
+.wt{font-family:'Playfair Display',serif;font-size:clamp(2rem,8vw,3.2rem);font-weight:900;background:linear-gradient(135deg,#f72585,#7b9fff,#4cc9f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.8rem;line-height:1.1;}
+.ws{font-family:'Playfair Display',serif;font-style:italic;color:rgba(180,215,255,.52);font-size:clamp(1rem,3vw,1.2rem);max-width:480px;margin:0 auto 2.5rem;line-height:1.75;}
+.wss{display:flex;gap:2rem;justify-content:center;margin-bottom:2.5rem;flex-wrap:wrap;}
+.wst{text-align:center;}
+.wsn{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;background:linear-gradient(135deg,#f72585,#4cc9f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;}
+.wsl{font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(180,215,255,.32);}
+.brp{background:linear-gradient(135deg,#1a2f9e,#4361ee,#7b9fff);border:none;border-radius:14px;color:#fff;font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;padding:1rem 2.5rem;cursor:pointer;box-shadow:0 10px 40px rgba(67,97,238,.5);transition:all .2s;}
+.brp:hover{transform:translateY(-3px);box-shadow:0 15px 50px rgba(67,97,238,.7);}
 
-        .content {
-            line-height: 2.2;
-            color: #e8e8e8;
-            font-size: 1.25em;
-            text-align: justify;
-            margin-bottom: 30px;
-        }
+/* TOAST */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:linear-gradient(135deg,#c8005e,#1a2f9e);color:#fff;padding:.9rem 1.8rem;border-radius:12px;font-size:.88rem;z-index:9999;opacity:0;transition:all .35s;pointer-events:none;white-space:nowrap;font-style:italic;font-family:'Playfair Display',serif;box-shadow:0 10px 30px rgba(0,0,0,.5);}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
 
-        .content p {
-            margin-bottom: 35px;
-            text-indent: 40px;
-        }
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,.02);}
+::-webkit-scrollbar-thumb{background:rgba(67,97,238,.32);border-radius:2px;}
 
-        .content p:first-of-type {
-            text-indent: 0;
-        }
-
-        .highlight {
-            color: #ff6b9d;
-            font-weight: bold;
-            font-style: italic;
-            text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
-        }
-
-        .moon {
-            color: #ffd700;
-            font-weight: bold;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-        }
-
-        .section-title {
-            text-align: center;
-            color: #ff6b9d;
-            font-size: 2em;
-            margin: 50px 0 30px 0;
-            position: relative;
-            text-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(to right, transparent, #ff6b6b, transparent);
-            margin: 15px auto;
-        }
-
-        .images-section {
-            margin: 50px 0;
-        }
-
-        .image-row {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-
-        .image-container {
-            flex: 1;
-            min-width: 280px;
-            max-width: 450px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 107, 157, 0.3);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-            border: 2px solid rgba(255, 107, 157, 0.4);
-        }
-
-        .image-container:hover {
-            transform: scale(1.08) rotate(2deg);
-            box-shadow: 0 20px 50px rgba(255, 107, 157, 0.5), 0 0 50px rgba(255, 107, 157, 0.4);
-        }
-
-        .image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .image-caption {
-            text-align: center;
-            color: #c0c0c0;
-            font-style: italic;
-            margin-top: 15px;
-            font-size: 1.1em;
-        }
-
-        .decorative-icons {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 40px 0;
-            font-size: 2.5em;
-            color: #ff6b6b;
-        }
-
-        .decorative-icons i {
-            animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 5px 10px rgba(255, 107, 107, 0.3));
-        }
-
-        .decorative-icons i:nth-child(2) {
-            animation-delay: 0.5s;
-        }
-
-        .decorative-icons i:nth-child(3) {
-            animation-delay: 1s;
-        }
-
-        .decorative-icons i:nth-child(4) {
-            animation-delay: 1.5s;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-        }
-
-        .quote-box {
-            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
-            padding: 30px 40px;
-            border-radius: 15px;
-            margin: 40px 0;
-            color: white;
-            font-size: 1.3em;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5), 0 0 40px rgba(255, 107, 157, 0.3);
-            position: relative;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .quote-box::before {
-            content: '"';
-            font-size: 5em;
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            opacity: 0.3;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            font-size: 1.8em;
-            color: #ff6b9d;
-            font-weight: bold;
-            padding: 30px;
-            background: linear-gradient(135deg, rgba(255,107,157,0.2), rgba(196,69,105,0.2));
-            border-radius: 15px;
-            border: 2px solid rgba(255, 107, 157, 0.3);
-            box-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
-        }
-
-        .footer i {
-            color: #ff6b6b;
-            margin: 0 10px;
-            animation: heartbeat 1.5s infinite;
-        }
-
-        .moon-icon {
-            display: inline-block;
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 40px 25px;
-            }
-
-            .header h1 {
-                font-size: 2.2em;
-            }
-
-            .header .subtitle {
-                font-size: 1.2em;
-            }
-
-            .content {
-                font-size: 1.1em;
-            }
-
-            .content p {
-                text-indent: 20px;
-            }
-
-            .image-row {
-                flex-direction: column;
-            }
-
-            .section-title {
-                font-size: 1.5em;
-            }
-        }
-    </style>
+@media(max-width:380px){.mg{grid-template-columns:1fr;}.mc.feat{grid-column:span 1;}.kpad{max-width:260px;}}
+@media(min-width:768px){.vg{grid-template-columns:repeat(4,1fr);}.cog{grid-template-columns:repeat(4,1fr);}}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Para Ti, Mi Luna <i class="fas fa-moon moon-icon" style="font-size: 0.8em; color: #ffd700;"></i></h1>
-            <div class="subtitle">Elizabeth, mi amor eterno</div>
-            <div class="icon">
-                <i class="fas fa-heart"></i>
-            </div>
-        </div>
+<canvas id="cv"></canvas>
 
-        <div class="content">
-            <p>
-                <i class="fas fa-quote-left" style="color: #764ba2; margin-right: 10px; font-size: 1.5em;"></i>
-                <span class="moon">Mi Luna</span>, Elizabeth, escribo estas palabras con el corazón rebosante de amor y emoción. Desde el primer momento en que entraste en mi vida, todo cambió. No hay forma de expresar con simples palabras lo <span class="highlight">increíblemente maravilloso que ha sido estar a tu lado</span>. Cada día contigo es un regalo que atesoro en lo más profundo de mi ser, y aunque la distancia física nos separe, nuestros corazones están más unidos que nunca.
-            </p>
-
-            <div class="decorative-icons">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-moon"></i>
-                <i class="fas fa-star"></i>
-            </div>
-
-            <p>
-                Muchas personas dirían que una relación a distancia es difícil, complicada, incluso imposible. Pero nosotros hemos demostrado que cuando existe amor verdadero, <span class="highlight">la distancia no es más que un simple número en un mapa</span>. Sí, ha tenido sus desafíos, sus momentos de extrañarte tanto que duele el alma, pero cada uno de esos momentos solo ha servido para hacerme valorar aún más lo que tenemos. Nuestra relación ha sido una de las experiencias más hermosas de mi vida, y no la cambiaría por nada del mundo.
-            </p>
-
-            <p>
-                Lo que más me fascina es esa sensación que me invade cada vez que sé que voy a verte. <span class="highlight">Me emociono como un niño chiquito</span> esperando el mejor regalo de Navidad. Mi corazón late más rápido, una sonrisa se dibuja en mi rostro que no puedo borrar ni aunque quisiera, y siento esa mezcla de nervios y felicidad pura que solo tú me provocas. Es como si cada reencuentro fuera la primera vez, como si el tiempo que pasamos separados solo sirviera para que mi amor por ti creciera aún más.
-            </p>
-
-            <div class="section-title">
-                <i class="fas fa-images"></i> Nuestros Momentos Inolvidables <i class="fas fa-images"></i>
-            </div>
-
-            <div class="images-section">
-                <div class="image-row">
-                    <div>
-                        <div class="image-container">
-                            <img src="Medio año.jpeg" alt="Celebrando medio año juntos">
-                        </div>
-                        <div class="image-caption">
-                            <i class="fas fa-calendar-heart"></i> Seis meses de amor infinito
-                        </div>
-                    </div>
-                </div>
-
-                <p style="text-align: center; margin: 40px 0; font-size: 1.15em; color: #c0c0c0;">
-                    Celebrar nuestro medio año juntos fue un momento especial que marcó el inicio de muchos más aniversarios por venir. Cada mes a tu lado es una bendición que celebro con todo mi corazón.
-                </p>
-
-                <div class="image-row">
-                    <div>
-                        <div class="image-container">
-                            <img src="JyEPresa.jpg" alt="Nosotros en la presa">
-                        </div>
-                        <div class="image-caption">
-                            <i class="fas fa-water"></i> Aquel día mágico en la presa
-                        </div>
-                    </div>
-                    <div>
-                        <div class="image-container">
-                            <img src="regalo6m.jpg" alt="El regalo de hoy">
-                        </div>
-                        <div class="image-caption">
-                            <i class="fas fa-gift"></i> Un detalle lleno de amor para ti
-                        </div>
-                    </div>
-                </div>
-
-                <p style="text-align: center; margin: 40px 0; font-size: 1.15em; color: #c0c0c0;">
-                    Recuerdo perfectamente ese día en la presa, el viento, tu sonrisa, la forma en que la luz del sol iluminaba tu rostro. Y hoy, con este pequeño regalo que te envié, quiero que sepas que aunque estemos lejos, siempre estás en mis pensamientos.
-                </p>
-            </div>
-
-            <div class="decorative-icons">
-                <i class="fas fa-infinity"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-infinity"></i>
-            </div>
-
-            <p>
-                Quiero que lo sepas con absoluta certeza, <span class="moon">mi Luna</span>: <span class="highlight">para mí, tú siempre vas a ser la indicada</span>. No es una frase que diga a la ligera. Es una verdad que siento en cada fibra de mi ser. Si tuviera que volver a elegir mil veces, un millón de veces, cada una de esas veces te elegiría a ti sin pensarlo dos veces. No hay duda en mi mente, no hay "qué hubiera pasado si". Tú eres mi persona, mi complemento perfecto, mi alma gemela.
-            </p>
-
-            <p>
-                Eres la mujer con la que quiero compartir todas mis alegrías y mis tristezas, mis triunfos y mis fracasos. Quiero envejecer a tu lado, despertar cada mañana viendo tu hermoso rostro, y dormir cada noche con la tranquilidad de saber que estás en mi vida. <span class="highlight">Eres mi hogar</span>, sin importar dónde estemos físicamente, porque donde estás tú, ahí está mi corazón.
-            </p>
-
-            <div class="quote-box">
-                En la inmensidad del universo, entre millones de personas, el destino nos encontró. Y no fue casualidad, fue destino. Porque almas como la tuya y la mía estaban destinadas a encontrarse.
-            </div>
-
-            <p>
-                Y ahora, lo que más me emociona es nuestro futuro juntos. <span class="highlight">Pronto nos casaremos</span>, en aproximadamente un año y medio, y no puedo describir la felicidad que siento al pensar en ese día. Imagino ese momento en que te vea caminando hacia mí, radiante, hermosa, lista para prometernos amor eterno frente a todos nuestros seres queridos. Será el día más feliz de mi vida, el día en que oficialmente comenzaremos nuestra vida como esposos.
-            </p>
-
-            <p>
-                Cada día que pasa es un día menos de espera y un día más cerca de ese momento en que ya no tengamos que despedirnos, en que la distancia deje de existir entre nosotros. Pienso en nuestro hogar juntos, en las mañanas tomando café a tu lado, en las noches viendo películas acurrucados en el sofá, en construir nuestros sueños lado a lado. <span class="highlight">Pienso en nuestra vida juntos y mi corazón se llena de esperanza y alegría</span>.
-            </p>
-
-            <div class="decorative-icons">
-                <i class="fas fa-rings-wedding"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-infinity"></i>
-                <i class="fas fa-home-heart"></i>
-            </div>
-
-            <p>
-                La distancia nos ha enseñado a valorar cada momento, cada llamada, cada mensaje. Nos ha hecho más fuertes como pareja y ha probado que nuestro amor puede superar cualquier obstáculo. Y cuando finalmente estemos juntos para siempre, <span class="highlight">cada segundo de espera habrá valido la pena</span>.
-            </p>
-
-            <p>
-                Elizabeth, <span class="moon">mi Luna</span>, gracias por ser mi luz en los días oscuros, por tu paciencia, por tu amor incondicional, por cada sonrisa que me regalas incluso a través de una pantalla. Gracias por elegirme a mí también, por creer en nosotros, por ser mi compañera en este hermoso viaje llamado vida. Te amo más de lo que las palabras pueden expresar, y te seguiré amando por toda la eternidad.
-            </p>
-        </div>
-
-        <div class="footer">
-            <i class="fas fa-heart"></i>
-            Te amo infinitamente, mi Luna
-            <i class="fas fa-heart"></i>
-            <div style="margin-top: 20px; font-size: 0.7em; color: #c0c0c0;">
-                Tuyo por siempre, hasta que la Luna deje de brillar
-                <i class="fas fa-moon" style="color: #ffd700; font-size: 1.2em;"></i>
-            </div>
-        </div>
+<!-- S1: CLAVE -->
+<div id="sk" class="scr on">
+  <div class="kg kg1"></div><div class="kg kg2"></div><div class="kg kg3"></div>
+  <div class="kbox">
+    <span class="lk">🔐</span>
+    <h1 class="kt">Amor Secreto</h1>
+    <p class="ks">Ingresa la clave de nuestro amor</p>
+    <div class="kdsp">
+      <div class="kdot" id="d0"></div><div class="kdot" id="d1"></div>
+      <div class="kdot" id="d2"></div><div class="kdot" id="d3"></div><div class="kdot" id="d4"></div>
     </div>
+    <div class="kpad" id="kpad">
+      <button class="kb" data-v="T">T</button><button class="kb" data-v="E">E</button><button class="kb" data-v="A">A</button>
+      <button class="kb" data-v="M">M</button><button class="kb" data-v="O">O</button><button class="kb" data-v="I">I</button>
+      <button class="kb" data-v="S">S</button><button class="kb" data-v="U">U</button><button class="kb" data-v="R">R</button>
+      <button class="kb wide" data-v="DEL">⌫ Borrar</button><button class="kb" data-v="✓">✓</button>
+    </div>
+    <p class="kh">Pista: Lo que siempre te digo 💙</p>
+    <p class="ke" id="ke"></p>
+  </div>
+</div>
 
-    <script>
-        // Crear corazones flotantes
-        function createHeart() {
-            const heart = document.createElement('div');
-            const icons = ['fa-heart', 'fa-moon', 'fa-star'];
-            const randomIcon = icons[Math.floor(Math.random() * icons.length)];
-            
-            heart.innerHTML = `<i class="fas ${randomIcon}"></i>`;
-            heart.style.position = 'fixed';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.bottom = '-50px';
-            heart.style.fontSize = Math.random() * 25 + 15 + 'px';
-            heart.style.color = randomIcon === 'fa-moon' ? '#ffd700' : '#ff6b6b';
-            heart.style.opacity = '0.7';
-            heart.style.pointerEvents = 'none';
-            heart.style.zIndex = '1000';
-            heart.style.animation = `rise ${Math.random() * 4 + 6}s linear`;
-            heart.style.filter = 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.5))';
-            
-            document.body.appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 10000);
-        }
+<!-- S2: MENU -->
+<div id="sm" class="scr">
+  <div class="mbg1"></div><div class="mbg2"></div>
+  <div class="pbar">
+    <div class="pav">💑</div>
+    <div class="pi">
+      <div class="pn">Amor a Distancia ✨</div>
+      <div class="pl">DESDE EL 23 DE JULIO 2025 · ¡MEDIO AÑO CUMPLIDO! 🥂</div>
+      <div class="xo"><div class="xi" id="xi" style="width:0%"></div></div>
+    </div>
+    <div class="ph" id="ph">🤍🤍🤍</div>
+  </div>
+  <div class="mhd">
+    <div class="mhr">♥ ♥ ♥</div>
+    <h1 class="mt">El Juego<br><em>del Corazón</em></h1>
+    <p class="ms">Elige tu aventura</p>
+  </div>
+  <div class="mg">
+    <div class="mc feat" onclick="goTo('sq')">
+      <span class="ce">💬</span>
+      <div class="ct">Preguntas del Corazón</div>
+      <div class="cd">11 preguntas románticas y personales para los dos</div>
+      <span class="cbg">⭐ Misión Principal</span>
+    </div>
+    <div class="mc" onclick="goTo('smom')">
+      <span class="ce">📸</span>
+      <div class="ct">Nuestros Momentos</div>
+      <div class="cd">Recuerdos que ya son historia</div>
+    </div>
+    <div class="mc" onclick="goTo('sca')">
+      <span class="ce">✉️</span>
+      <div class="ct">Carta de Amor</div>
+      <div class="cd">Una carta desde el corazón</div>
+    </div>
+    <div class="mc" onclick="goTo('sva')">
+      <span class="ce">🌟</span>
+      <div class="ct">Nuestros Pilares</div>
+      <div class="cd">Los valores que nos unen</div>
+    </div>
+    <div class="mc" onclick="goTo('sco')">
+      <span class="ce">⏳</span>
+      <div class="ct">Contador</div>
+      <div class="cd">Tiempo juntos desde el 23-Jul-2025</div>
+    </div>
+  </div>
+</div>
 
-        // Crear animación CSS para los elementos flotantes
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes rise {
-                to {
-                    bottom: 110vh;
-                    opacity: 0;
-                    transform: translateX(${Math.random() * 100 - 50}px);
-                }
-            }
-        `;
-        document.head.appendChild(style);
+<!-- S3: MOMENTOS -->
+<div id="smom" class="scr">
+  <div style="max-width:560px;width:100%;margin-bottom:1.2rem;"><button class="bbtn" onclick="goTo('sm')">← Volver al menú</button></div>
+  <div style="text-align:center;max-width:560px;width:100%;margin-bottom:1.5rem;">
+    <span class="sl">Nuestra historia juntos</span>
+    <div class="stl">Momentos Inolvidables</div>
+    <p style="font-size:.8rem;color:rgba(150,200,255,.32);margin-top:.5rem;font-style:italic;">Cada uno vale un millón de palabras 💙</p>
+  </div>
+  <div class="tl">
+    <div class="mi" style="animation-delay:.1s"><div class="md">🗓️</div><div class="mb"><span class="mdate">23 de Julio, 2025</span><div class="mtl">El Inicio de Todo 💙</div><p class="mdesc">El día en que dijimos "sí" y empezó esta historia a distancia que ya lleva más de 6 meses… y los que faltan.</p></div></div>
+    <div class="mi" style="animation-delay:.2s"><div class="md">🎂</div><div class="mb"><span class="mdate">Mi cumpleaños</span><div class="mtl">Ella estuvo ahí 🎉</div><p class="mdesc">Vino a estar conmigo en mi día especial. La distancia no fue excusa para celebrarlo como merecía.</p></div></div>
+    <div class="mi" style="animation-delay:.3s"><div class="md">🏡</div><div class="mb"><span class="mdate">Su cumpleaños</span><div class="mtl">La traje a conocer mi tierra 🌄</div><p class="mdesc">Por primera vez pudo conocer mi mundo, lo que me hace ser quien soy. Uno de esos momentos que no se olvidan.</p></div></div>
+    <div class="mi" style="animation-delay:.4s"><div class="md">🎸</div><div class="mb"><span class="mdate">Noviembre 2025</span><div class="mtl">Tigres del Norte &amp; Mago de Z 🎶</div><p class="mdesc">Un concierto, dos artistas increíbles. Cantamos, bailamos y vivimos esa noche juntos. Un recuerdo para siempre.</p></div></div>
+    <div class="mi" style="animation-delay:.5s"><div class="md">🎡</div><div class="mb"><span class="mdate">La feria · 2025</span><div class="mtl">La Rueda de la Fortuna 😅❤️</div><p class="mdesc">Nos subimos juntos. Sí, eso pasó. Y aunque me dan miedo las alturas, contigo hasta lo que asusta se vuelve aventura.</p></div></div>
+    <div class="mi" style="animation-delay:.6s"><div class="md">🌊</div><div class="mb"><span class="mdate">Enero 2026</span><div class="mtl">Río Ayutla &amp; Presa Jalpan 🏞️</div><p class="mdesc">Ayutla fue magia pura. El río, la naturaleza, tú. Ese momento es de mis favoritos en la vida entera. Jalpan también fue hermoso… pero Ayutla fue diferente. 😍</p></div></div>
+    <div class="mi" style="animation-delay:.7s"><div class="md">💍</div><div class="mb"><span class="mdate">Pronto...</span><div class="mtl">Lo que viene juntos 🌅</div><p class="mdesc">Matrimonio, hogar, familia, tradiciones. La mejor historia aún está por escribirse y la escribiremos juntos.</p></div></div>
+  </div>
+</div>
 
-        // Generar elementos flotantes cada cierto tiempo
-        setInterval(createHeart, 1500);
+<!-- S4: PREGUNTAS -->
+<div id="sq" class="scr">
+  <div class="qhd">
+    <button class="qbb" onclick="goTo('sm')">← Menú</button>
+    <div class="qpi">
+      <div class="qpl" id="qpl">Pregunta 1 de 11</div>
+      <div class="qpo"><div class="qpi2" id="qpb" style="width:9%"></div></div>
+    </div>
+    <div class="qcn" id="qcn">1/11</div>
+  </div>
+  <div class="qnd" id="qnd"></div>
+  <div class="qst" id="qst"></div>
+  <div class="ab" id="ab">
+    <textarea id="ta" placeholder="Escribe tu respuesta aquí, mi amor… ✨" maxlength="600"></textarea>
+    <div class="ac"><span id="cc">0</span>/600</div>
+  </div>
+  <div class="qa">
+    <button class="bsa" onclick="saveAns()">💙 Guardar respuesta</button>
+    <button class="bsk" onclick="nextQ()">Siguiente →</button>
+  </div>
+</div>
 
-        // Efecto de partículas al hacer hover en las imágenes
-        document.querySelectorAll('.image-container').forEach(container => {
-            container.addEventListener('mouseenter', () => {
-                for(let i = 0; i < 5; i++) {
-                    setTimeout(() => createHeart(), i * 100);
-                }
-            });
-        });
-    </script>
+<!-- S5: CARTA -->
+<div id="sca" class="scr">
+  <div style="max-width:600px;width:100%;margin-bottom:1.2rem;"><button class="bbtn" onclick="goTo('sm')">← Volver al menú</button></div>
+  <div class="cenv">
+    <div class="cfr">💌 &nbsp;De: Él &nbsp;·&nbsp; Para: Ti, mi amor</div>
+    <h2 class="ch">Una carta desde<br>la distancia</h2>
+    <div class="cb">
+      <p>Hay noches en que cierro los ojos y siento que el tiempo y la distancia son solo una pequeña prueba que Dios puso en nuestro camino para demostrar que lo que tenemos es real, profundo y eterno.</p>
+      <p>Pienso en el día en que podamos compartir la misma mesa, reír juntos con la familia, llenar la casa del olor de una buena carne asada, y dar gracias a Dios por habernos puesto el uno frente al otro el 23 de julio.</p>
+      <p>Recuerdo Ayutla y sonrío. Recuerdo el concierto de los Tigres del Norte y Mago de Z y siento que podría revivir ese momento mil veces. Recuerdo la rueda de la fortuna y me río de mí mismo, porque contigo hasta lo que me asusta se vuelve bonito.</p>
+      <p>Cuando toco mis instrumentos, imagino que hay una canción que aún no he compuesto pero que ya existe entre tú y yo. Una melodía que solo nosotros dos entendemos.</p>
+      <p>Quiero construir un hogar contigo. Lleno de fe, de familia, de música y de amor. La distancia es temporal. Nuestro futuro juntos... eso es eterno. 🙏</p>
+    </div>
+    <div class="cfi">Con todo mi amor, siempre — Él ♥</div>
+  </div>
+</div>
+
+<!-- S6: VALORES -->
+<div id="sva" class="scr">
+  <div style="max-width:560px;width:100%;margin-bottom:1.2rem;"><button class="bbtn" onclick="goTo('sm')">← Volver al menú</button></div>
+  <div style="text-align:center;margin-bottom:1.5rem;">
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(1.7rem,6vw,2.4rem);font-weight:900;background:linear-gradient(135deg,#f72585,#4cc9f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Nuestros Pilares</div>
+    <p style="color:rgba(150,200,255,.32);font-size:.8rem;margin-top:.4rem;letter-spacing:.1em;">Lo que nos define como pareja</p>
+  </div>
+  <div class="vg">
+    <div class="vc" style="animation-delay:.1s"><span class="ve">🤝</span><div class="vn">Respeto</div><p class="vd">La base de todo, lo que hace que esto sea real y bonito</p></div>
+    <div class="vc" style="animation-delay:.2s"><span class="ve">💛</span><div class="vn">Confianza</div><p class="vd">La que nos mantiene unidos aunque haya kilómetros de por medio</p></div>
+    <div class="vc" style="animation-delay:.3s"><span class="ve">❤️</span><div class="vn">Amor</div><p class="vd">El que los trajo aquí y el que los seguirá eligiendo</p></div>
+    <div class="vc" style="animation-delay:.4s"><span class="ve">😂</span><div class="vn">Complicidad</div><p class="vd">Esa chispa y esa risa que solo existe entre los dos</p></div>
+    <div class="vc" style="animation-delay:.5s"><span class="ve">🌱</span><div class="vn">Crecimiento</div><p class="vd">Construyendo juntos el futuro que los dos merecen</p></div>
+    <div class="vc" style="animation-delay:.6s"><span class="ve">🏡</span><div class="vn">Hogar</div><p class="vd">Un sueño compartido que ya está en camino</p></div>
+    <div class="vc" style="animation-delay:.7s"><span class="ve">🎯</span><div class="vn">Compromiso</div><p class="vd">Elegirse cada día, sin importar la distancia ni las circunstancias</p></div>
+    <div class="vc" style="animation-delay:.8s"><span class="ve">✨</span><div class="vn">Conexión</div><p class="vd">Lo que se siente aunque estén lejos — eso no tiene explicación</p></div>
+  </div>
+</div>
+
+<!-- S7: CONTADOR -->
+<div id="sco" class="scr">
+  <div style="max-width:560px;width:100%;margin-bottom:1.2rem;"><button class="bbtn" onclick="goTo('sm')">← Volver al menú</button></div>
+  <div class="coh">
+    <div class="cob">💑</div>
+    <div class="cot">Juntos desde el<br>23 de Julio, 2025</div>
+    <div class="cos">Medio año cumplido el 23 de enero 🥂 · Y los que vienen...</div>
+  </div>
+  <div class="cog">
+    <div class="cob2"><span class="cn" id="cd">---</span><span class="cl">Días</span></div>
+    <div class="cob2"><span class="cn" id="ch2">--</span><span class="cl">Horas</span></div>
+    <div class="cob2"><span class="cn" id="cm">--</span><span class="cl">Minutos</span></div>
+    <div class="cob2"><span class="cn" id="cs">--</span><span class="cl">Segundos</span></div>
+  </div>
+</div>
+
+<!-- S8: WIN -->
+<div id="sw" class="scr">
+  <div class="wca" id="wca"></div>
+  <div class="wi">🏆</div>
+  <h2 class="wt">¡Lo logramos,<br>mi amor!</h2>
+  <p class="ws">Respondiste todas las preguntas del corazón. Esto es lo que somos: dos almas que se eligen sin importar la distancia, los meses, ni los kilómetros.</p>
+  <div class="wss">
+    <div class="wst"><span class="wsn" id="wa">0</span><span class="wsl">Respondidas</span></div>
+    <div class="wst"><span class="wsn">6+</span><span class="wsl">Meses juntos</span></div>
+    <div class="wst"><span class="wsn">💍</span><span class="wsl">Destino</span></div>
+  </div>
+  <button class="brp" onclick="goTo('sm')">← Volver al menú</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SECRET="TEAMO",START=new Date("2025-07-23T00:00:00");
+const QS=[
+  {icon:"✨",tag:"Nuestros inicios",text:"¿Cuál fue el momento exacto en que sentiste que nuestra relación era algo especial y diferente?"},
+  {icon:"💍",tag:"El futuro",text:"¿Te imaginas cómo sería nuestro matrimonio? ¿Qué momento de la boda te emociona más?"},
+  {icon:"👨‍👩‍👧",tag:"Familia",text:"¿Qué significa para ti la idea de formar una familia conmigo? ¿Cómo la imaginas?"},
+  {icon:"🌙",tag:"Cita perfecta",text:"¿Cuál sería nuestra cita perfecta aunque estemos a distancia? ¿Qué haríamos juntos?"},
+  {icon:"🎵",tag:"Música & alma",text:"¿Qué canción describe perfectamente nuestra historia de amor y por qué?"},
+  {icon:"🏗️",tag:"Construir juntos",text:"¿Qué es lo más importante que quieres que construyamos como pareja en los próximos años?"},
+  {icon:"🌅",tag:"El reencuentro",text:"¿Qué recuerdos quieres crear conmigo el día que la distancia ya no nos separe?"},
+  {icon:"🎉",tag:"Tradición",text:"¿Cuál te gustaría que fuera nuestra tradición familiar favorita, algo que solo sea nuestro?"},
+  {icon:"💬",tag:"Conexión",text:"¿Qué es lo que más te hace sentir amada cuando hablamos o nos escribimos?"},
+  {icon:"🏡",tag:"Nuestro hogar",text:"¿Cómo imaginas nuestro hogar juntos? Descríbelo con todos los detalles que quieras."},
+  {icon:"🌊",tag:"Momentos favoritos",isSpecial:true,
+    text:"¿Cuál ha sido tu momento favorito conmigo hasta ahora?",
+    hint:"(El mío fue en Ayutla 😍 — ¿cuál es el tuyo?)",
+    opts:["🌊 Río Ayutla","🎡 La Feria / Rueda de la Fortuna","🏞️ Presa Jalpan","🎸 Tigres del Norte & Mago de Z","💑 Todos — cada momento a tu lado es increíble"]}
+];
+let ki="",cq=0,ans=JSON.parse(localStorage.getItem("loveAns")||"{}"),selOpt=null;
+
+// nav
+function goTo(id){
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  const t=document.getElementById(id);
+  if(t){t.classList.add('on');t.scrollTop=0;}
+  if(id==='sq'){cq=0;renderQ();}
+  if(id==='sco')startCnt();
+  if(id==='sm')updMenu();
+  if(id==='sw'){confetti();document.getElementById('wa').textContent=Object.keys(ans).length;}
+}
+
+// key
+function updDots(){for(let i=0;i<5;i++){const d=document.getElementById('d'+i);d.classList.toggle('f',i<ki.length);d.classList.remove('err');}}
+function keyErr(){ki="";for(let i=0;i<5;i++){const d=document.getElementById('d'+i);d.classList.add('err');d.classList.remove('f');}const e=document.getElementById('ke');e.style.color='#ff6666';e.textContent="Incorrecto 💔 Pista: T·E·A·M·O";setTimeout(()=>{for(let i=0;i<5;i++)document.getElementById('d'+i).classList.remove('err');e.textContent="";},1800);}
+document.getElementById('kpad').addEventListener('click',e=>{
+  const b=e.target.closest('.kb');if(!b)return;const v=b.dataset.v;
+  if(v==='DEL'){ki=ki.slice(0,-1);updDots();document.getElementById('ke').textContent="";return;}
+  if(v==='✓'){const e2=document.getElementById('ke');if(ki===SECRET){e2.style.color='#6dffaa';e2.textContent="¡Clave correcta! 💙";setTimeout(()=>goTo('sm'),700);}else keyErr();return;}
+  if(ki.length>=5)return;ki+=v;updDots();
+  if(ki.length===5)setTimeout(()=>{if(ki===SECRET){const e2=document.getElementById('ke');e2.style.color='#6dffaa';e2.textContent="¡Clave correcta! 💙";setTimeout(()=>goTo('sm'),700);}else keyErr();},300);
+});
+
+// menu
+function updMenu(){const n=Object.keys(ans).length;document.getElementById('xi').style.width=Math.min(100,n/11*100)+'%';document.getElementById('ph').textContent=n>=9?'❤️❤️❤️':n>=5?'❤️❤️🤍':n>=1?'❤️🤍🤍':'🤍🤍🤍';}
+
+// questions
+function buildDots(){const c=document.getElementById('qnd');c.innerHTML='';QS.forEach((_,i)=>{const b=document.createElement('button');b.className='nd'+(ans[i]?' dn':'')+(i===cq?' cur':'');b.onclick=()=>{cq=i;renderQ();};c.appendChild(b);});}
+function renderQ(){
+  const q=QS[cq],pct=((cq+1)/QS.length)*100;
+  document.getElementById('qpl').textContent=`Pregunta ${cq+1} de ${QS.length}`;
+  document.getElementById('qpb').style.width=pct+'%';
+  document.getElementById('qcn').textContent=`${cq+1}/${QS.length}`;
+  let sp='';
+  if(q.isSpecial){
+    sp=`<div class="qoh">${q.hint}</div><div class="qog">${q.opts.map((o,i)=>`<button class="qob" data-i="${i}" onclick="selO(this,'${o.replace(/'/g,"\\'")}')">${o}</button>`).join('')}</div><div style="font-size:.72rem;color:rgba(150,200,255,.28);margin:.4rem 0 .7rem;text-align:center;font-style:italic;">O escribe tu respuesta 👇</div>`;
+    selOpt=null;
+  }
+  document.getElementById('qst').innerHTML=`<div class="qcg" style="animation:fin .45s ease both"><div class="qnb">💙 Pregunta ${String(cq+1).padStart(2,'0')}</div><span class="qib">${q.icon}</span><div class="qtx">${q.text}</div>${sp}<div class="qtg">⟣ ${q.tag}</div></div>`;
+  const ta=document.getElementById('ta');ta.value=ans[cq]||'';document.getElementById('cc').textContent=ta.value.length;
+  buildDots();document.getElementById('sq').scrollTo({top:0,behavior:'smooth'});
+}
+function selO(btn,label){document.querySelectorAll('.qob').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');selOpt=label;const ta=document.getElementById('ta');if(!ta.value.trim())ta.value=label;document.getElementById('cc').textContent=ta.value.length;}
+document.getElementById('ta').addEventListener('input',function(){document.getElementById('cc').textContent=this.value.length;});
+function saveAns(){const v=document.getElementById('ta').value.trim()||selOpt;if(!v){toast('✍️ ¡Escribe algo, aunque sea poco!');return;}ans[cq]=v;localStorage.setItem('loveAns',JSON.stringify(ans));toast('💙 ¡Respuesta guardada!');buildDots();updMenu();setTimeout(()=>{if(cq<QS.length-1){cq++;renderQ();}else{if(Object.keys(ans).length===QS.length)setTimeout(()=>goTo('sw'),500);else toast(`💬 Aún faltan ${QS.length-Object.keys(ans).length} preguntas`);}},600);}
+function nextQ(){if(cq<QS.length-1){cq++;renderQ();}else{if(Object.keys(ans).length===QS.length)goTo('sw');else toast(`💬 Aún faltan ${QS.length-Object.keys(ans).length} por responder`);}}
+
+// counter
+let ci;
+function startCnt(){if(ci)clearInterval(ci);function u(){const d=Date.now()-START.getTime();const dy=Math.floor(d/86400000),hr=Math.floor((d%86400000)/3600000),mn=Math.floor((d%3600000)/60000),sc=Math.floor((d%60000)/1000);document.getElementById('cd').textContent=dy.toLocaleString('es');document.getElementById('ch2').textContent=String(hr).padStart(2,'0');document.getElementById('cm').textContent=String(mn).padStart(2,'0');document.getElementById('cs').textContent=String(sc).padStart(2,'0');}u();ci=setInterval(u,1000);}
+
+// confetti
+function confetti(){const a=document.getElementById('wca');a.innerHTML='';const cols=['#f72585','#4361ee','#4cc9f0','#7b9fff','#ffd166','#ff6db3'];for(let i=0;i<70;i++){const p=document.createElement('div'),s=6+Math.random()*10;p.style.cssText=`position:absolute;width:${s}px;height:${s}px;background:${cols[Math.floor(Math.random()*cols.length)]};left:${Math.random()*100}%;top:-20px;border-radius:${Math.random()>.5?'50%':'2px'};opacity:${.6+Math.random()*.4};animation:cfall ${2+Math.random()*3}s ease-in ${Math.random()*2}s forwards;`;a.appendChild(p);}}
+
+// toast
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2800);}
+
+// canvas petals
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+let W,H,pts=[];
+function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}rsz();window.addEventListener('resize',rsz);
+function spw(){const h=Math.random()>.4;pts.push({x:Math.random()*W,y:-20,s:6+Math.random()*12,sp:.4+Math.random()*.8,dr:(Math.random()-.5)*.5,op:.07+Math.random()*.16,r:Math.random()*Math.PI*2,rs:(Math.random()-.5)*.03,c:['#f72585','#ff6db3','#4cc9f0','#7b9fff','#4361ee','#ffd166'][Math.floor(Math.random()*6)],h});}
+setInterval(spw,520);
+function dh(x,y,s,c,o,r){ctx.save();ctx.translate(x,y);ctx.rotate(r);ctx.globalAlpha=o;ctx.fillStyle=c;ctx.beginPath();ctx.moveTo(0,s*.35);ctx.bezierCurveTo(-s,-s*.25,-s*1.1,s*.55,0,s);ctx.bezierCurveTo(s*1.1,s*.55,s,-s*.25,0,s*.35);ctx.fill();ctx.restore();}
+function dp(x,y,s,c,o,r){ctx.save();ctx.translate(x,y);ctx.rotate(r);ctx.globalAlpha=o;ctx.fillStyle=c;ctx.beginPath();ctx.ellipse(0,0,s*.4,s,0,0,Math.PI*2);ctx.fill();ctx.restore();}
+(function af(){ctx.clearRect(0,0,W,H);pts.forEach((p,i)=>{p.y+=p.sp;p.x+=p.dr;p.r+=p.rs;p.h?dh(p.x,p.y,p.s,p.c,p.op,p.r):dp(p.x,p.y,p.s,p.c,p.op,p.r);if(p.y>H+30)pts.splice(i,1);});requestAnimationFrame(af);})();
+
+// confetti animation
+document.head.insertAdjacentHTML('beforeend','<style>@keyframes cfall{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}</style>');
+updDots();
+</script>
 </body>
 </html>
