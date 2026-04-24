@@ -71,20 +71,25 @@
     @media(max-width:640px){.tl-vline{left:17px;transform:none}}
     .tl-item{display:grid;grid-template-columns:1fr 52px 1fr;gap:0 1.2rem;margin-bottom:3.2rem;align-items:start}
     @media(max-width:640px){
-      .tl-item{grid-template-columns:36px 1fr;gap:0 .8rem}
+      .tl-item{display:flex;flex-direction:column;gap:.5rem;margin-bottom:2.2rem;padding-left:52px;position:relative}
       .tl-item .tl-l{display:none}
-      .tl-item>div:nth-child(1){order:2}
-      .tl-item>div:nth-child(2){order:1}
-      .tl-item>div:nth-child(3){order:3;display:none}
-      .tl-card{text-align:left !important;padding:1rem 1.1rem}
+      .tl-item>div{width:100%}
+      .tl-center-col{position:absolute;left:0;top:0;display:flex;flex-direction:column;align-items:center;width:44px}
+      .tl-card{text-align:left !important;padding:.9rem 1rem}
       .tl-dot{width:36px;height:36px;font-size:.8rem}
-      .tl-tag{font-size:.58rem;color:rgba(45,212,191,.6);display:block;margin-top:.3rem}
+      .tl-tag{font-size:.58rem;color:rgba(45,212,191,.6);display:block;margin-top:.3rem;text-align:center;white-space:normal;word-break:break-word}
       .tl-card h4{font-size:.95rem}
       .tl-card p{font-size:.82rem}
     }
     .tl-dot{width:42px;height:42px;border-radius:50%;border:1px solid rgba(45,212,191,.4);background:rgba(45,212,191,.07);display:flex;align-items:center;justify-content:center;font-size:.95rem;color:var(--teal-lt);margin:0 auto;position:relative;z-index:1;transition:all .3s}
     .tl-item:hover .tl-dot{background:rgba(45,212,191,.18);border-color:var(--teal-lt);box-shadow:0 0 20px rgba(45,212,191,.3)}
     .tl-tag{font-size:.55rem;letter-spacing:.3em;color:rgba(45,212,191,.45);text-align:center;margin-top:.4rem;white-space:nowrap;text-transform:uppercase}
+    /* desktop: flip items show card on left */
+    @media(min-width:641px){
+      .tl-flip{direction:rtl}
+      .tl-flip .tl-card,.tl-flip .tl-tag,.tl-flip p,.tl-flip h4{direction:ltr;text-align:right}
+      .tl-flip .tl-center-col{direction:ltr}
+    }
     .tl-card{background:rgba(255,255,255,.03);border:1px solid rgba(45,212,191,.1);border-radius:8px;padding:1.3rem 1.5rem;transition:all .3s}
     .tl-item:hover .tl-card{border-color:rgba(45,212,191,.28);background:rgba(45,212,191,.05)}
     .tl-card h4{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--teal-lt);margin-bottom:.35rem;font-weight:400}
@@ -222,27 +227,27 @@
     <div class="aline reveal" style="background:linear-gradient(90deg,transparent,var(--teal-lt),transparent)"></div>
     <h2 class="s-title reveal" style="color:var(--cream)">Cada momento <em style="color:var(--teal-lt)">importa</em></h2>
 
-    <div class="tl-item reveal"><div class="tl-l"></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-heart"></i></div><span class="tl-tag">Jul 2024</span></div><div><div class="tl-card"><h4>23 de julio el sí</h4><p>15 días de mensajes diarios y el 23 la convencí. Desde ese día el calendario tiene un antes y un después. <em>El mejor sí de mi vida.</em></p></div></div></div>
+    <div class="tl-item reveal"><div class="tl-l"></div><div class="tl-center-col"><div class="tl-dot"><i class="fa-solid fa-heart"></i></div><span class="tl-tag">Jul 2024</span></div><div><div class="tl-card"><h4>23 de julio el sí</h4><p>15 días de mensajes diarios y el 23 la convencí. Desde ese día el calendario tiene un antes y un después. <em>El mejor sí de mi vida.</em></p></div></div></div>
 
-    <div class="tl-item reveal"><div><div class="tl-card tl-coral" style="text-align:right"><h4>Primera vez en persona</h4><p>Nos vimos en San Juan del Río. Primer cine juntos. <em>La mejor película fue ella.</em></p></div></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-film"></i></div><span class="tl-tag">Ago 2024</span></div><div class="tl-l"></div></div>
+    <div class="tl-item tl-flip reveal"><div><div class="tl-card tl-coral"><h4>Primera vez en persona</h4><p>Nos vimos en San Juan del Río. Primer cine juntos. <em>La mejor película fue ella.</em></p></div></div><div class="tl-center-col"><div class="tl-dot"><i class="fa-solid fa-film"></i></div><span class="tl-tag">Ago 2024</span></div><div class="tl-l"></div></div>
 
-    <div class="tl-item reveal"><div class="tl-l"></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-seedling"></i></div><span class="tl-tag">Sep 2024</span></div><div><div class="tl-card"><h4>Flores amarillas 21 sep</h4><p>Le mandé sus primeras flores amarillas. <em>Amarillo el color de lo que no se marcha.</em></p></div></div></div>
+    <div class="tl-item reveal"><div class="tl-l"></div><div class="tl-center-col"><div class="tl-dot"><i class="fa-solid fa-seedling"></i></div><span class="tl-tag">Sep 2024</span></div><div><div class="tl-card"><h4>Flores amarillas — 21 sep</h4><p>Le mandé sus primeras flores amarillas. <em>Amarillo, el color de lo que no se marcha.</em></p></div></div></div>
 
-    <div class="tl-item reveal"><div><div class="tl-card tl-coral" style="text-align:right"><h4>Flores porque sí 8 oct</h4><p>Sin ocasión especial. Solo porque quería. <em>A veces el mejor motivo es no tener ninguno.</em></p></div></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-spa"></i></div><span class="tl-tag">Oct 2024</span></div><div class="tl-l"></div></div>
+    <div class="tl-item tl-flip reveal"><div><div class="tl-card tl-coral"><h4>Flores porque sí — 8 oct</h4><p>Sin ocasión especial. Solo porque quería. <em>A veces el mejor motivo es no tener ninguno.</em></p></div></div><div class="tl-center-col"><div class="tl-dot"><i class="fa-solid fa-spa"></i></div><span class="tl-tag">Oct 2024</span></div><div class="tl-l"></div></div>
 
-    <div class="tl-item reveal"><div class="tl-l"></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-music"></i></div><span class="tl-tag">Nov 2024</span></div><div><div class="tl-card"><h4>Cumpleaños + Feria + Conciertos</h4><p>Ella me regaló cajita con cartas, hotwheels, gatito y taza de Batman. Después: feria, Mago de Oz, Tigres del Norte y la rueda de la fortuna juntos. <em>Noches así no se olvidan.</em></p></div></div></div>
+    <div class="tl-item reveal"><div class="tl-l"></div><div class="tl-center-col"><div class="tl-dot"><i class="fa-solid fa-music"></i></div><span class="tl-tag">Nov 2024</span></div><div><div class="tl-card"><h4>Cumpleaños + Feria + Conciertos</h4><p>Ella me regaló cajita con cartas, hotwheels, gatito y taza de Batman. Después: feria, Mago de Oz, Tigres del Norte y la rueda de la fortuna juntos. <em>Noches así no se olvidan.</em></p></div></div></div>
 
-    <div class="tl-item reveal"><div><div class="tl-card tl-coral" style="text-align:right"><h4>6 meses primer Jalpan</h4><p>La traje por primera vez a Jalpan, la presa y el río Ayutla. <em>La Sierra la recibió bien.</em></p></div></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-water"></i></div><span class="tl-tag">Ene 2025</span></div><div class="tl-l"></div></div>
+    <div class="tl-item tl-flip reveal"><div><div class="tl-card tl-coral"><h4>6 meses — primer Jalpan</h4><p>La traje por primera vez a Jalpan, la presa y el río Ayutla. <em>La Sierra la recibió bien.</em></p></div></div><div class="tl-center-col"><div class="tl-dot"><i class="fa-solid fa-water"></i></div><span class="tl-tag">Ene 2025</span></div><div class="tl-l"></div></div>
 
-    <div class="tl-item reveal"><div class="tl-l"></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-gift"></i></div><span class="tl-tag">Feb 2025</span></div><div><div class="tl-card"><h4>7 meses y San Valentín</h4><p>Le di flores y funda personalizada de Morat. Ella me mandó Snoopy, globo y chocolates. <em>Los dos sabemos querer.</em></p></div></div></div>
+    <div class="tl-item reveal"><div class="tl-l"></div><div class="tl-center-col"><div class="tl-dot"><i class="fa-solid fa-gift"></i></div><span class="tl-tag">Feb 2025</span></div><div><div class="tl-card"><h4>7 meses y San Valentín</h4><p>Le di flores y funda personalizada de Morat. Ella me mandó Snoopy, globo y chocolates. <em>Los dos sabemos querer.</em></p></div></div></div>
 
-    <div class="tl-item reveal"><div><div class="tl-card tl-coral" style="text-align:right"><h4>Conocí a su familia Amealco</h4><p>Cumpleaños del papá de Elizabeth en marzo. Amealco el 8 de marzo. <em>Momentos que no tienen reversa y no los quieres.</em></p></div></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-users"></i></div><span class="tl-tag">Mar 2025</span></div><div class="tl-l"></div></div>
+    <div class="tl-item tl-flip reveal"><div><div class="tl-card tl-coral"><h4>Conocí a su familia en Santiago Mexquitilán</h4><p>Fuimos al cumpleaños del papá de Elizabeth. De camino paramos en Amealco por unos chicharrones legendarios. <em>Momentos que no tienen reversa y no los quieres.</em></p></div></div><div class="tl-center-col"><div class="tl-dot"><i class="fa-solid fa-users"></i></div><span class="tl-tag">Mar 2025</span></div><div class="tl-l"></div></div>
 
-    <div class="tl-item reveal"><div class="tl-l"></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-sun"></i></div><span class="tl-tag">21 Mar 2025</span></div><div><div class="tl-card"><h4>Flores de los dos al mismo tiempo</h4><p>El 21 de marzo los dos nos mandamos flores amarillas sin acordarlo. <em>Simplemente los dos pensamos igual.</em></p></div></div></div>
+    <div class="tl-item reveal"><div class="tl-l"></div><div class="tl-center-col"><div class="tl-dot"><i class="fa-solid fa-sun"></i></div><span class="tl-tag">21 Mar 2025</span></div><div><div class="tl-card"><h4>Flores de los dos al mismo tiempo</h4><p>El 21 de marzo los dos nos mandamos flores amarillas sin acordarlo. <em>Simplemente los dos pensamos igual.</em></p></div></div></div>
 
-    <div class="tl-item reveal"><div><div class="tl-card tl-coral" style="text-align:right"><h4>Vino a mi mundo Jalpan + Ahuacatlán</h4><p>27 rosas estilo el patrón, serenata con acordeón y guitarra, por la noche el DJ le dedicó una canción de Morat, y nos quedamos hasta la 1:30 am. Al día siguiente conoció a mi mamá y hermano en Ahuacatlán. Al irse me regaló cinturón y cartera. <em>Mi mundo ya es tuyo. Completo.</em></p></div></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot" style="border-color:rgba(244,98,58,.6);color:var(--coral-lt)"><i class="fa-solid fa-star"></i></div><span class="tl-tag" style="color:rgba(244,98,58,.55)">Abr 2025</span></div><div class="tl-l"></div></div>
+    <div class="tl-item tl-flip reveal"><div><div class="tl-card tl-coral"><h4>Vino a mi mundo — Jalpan + Ahuacatlán</h4><p>27 rosas estilo el patrón, serenata con acordeón y guitarra, por la noche el DJ le dedicó una canción de Morat, y nos quedamos hasta la 1:30 am. Al día siguiente conoció a mi mamá y hermano en Ahuacatlán. Al irse me regaló cinturón y cartera. <em>Mi mundo ya es tuyo. Completo.</em></p></div></div><div class="tl-center-col"><div class="tl-dot" style="border-color:rgba(244,98,58,.6);color:var(--coral-lt)"><i class="fa-solid fa-star"></i></div><span class="tl-tag" style="color:rgba(244,98,58,.55)">Abr 2025</span></div><div class="tl-l"></div></div>
 
-    <div class="tl-item reveal"><div class="tl-l"></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-moon"></i></div><span class="tl-tag">Hoy</span></div><div><div class="tl-card"><h4>9 meses y contando</h4><p>Nueve órbitas completas. La distancia no pudo con nosotros. <em>Te amo más que ayer y menos que mañana.</em></p></div></div></div>
+    <div class="tl-item reveal"><div class="tl-l"></div><div class="tl-center-col"><div class="tl-dot"><i class="fa-solid fa-moon"></i></div><span class="tl-tag">Hoy</span></div><div><div class="tl-card"><h4>9 meses y contando</h4><p>Nueve órbitas completas. La distancia no pudo con nosotros. <em>Te amo más que ayer y menos que mañana.</em></p></div></div></div>
   </div>
 </section>
 
