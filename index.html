@@ -1,836 +1,376 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>7 Meses • J & E</title>
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"/>
-  <!-- Font Awesome -->
+  <title>9 Meses · J & E</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Plus+Jakarta+Sans:wght@200;300;400;500&family=Great+Vibes&display=swap" rel="stylesheet"/>
 
   <style>
     :root {
-      --gold: #7ab8e8;
-      --gold-light: #b8d9f5;
-      --cream: #eef4ff;
-      --dark: #04080f;
-      --deep: #060d1a;
-      --moon: #ddeeff;
-      --sun: #f5c842;
-      --rose: #6ba3c9;
-      --accent: #4a9fd4;
-      --accent2: #2a6fa8;
+      --navy:      #071428;
+      --navy-mid:  #0c1d3a;
+      --teal:      #0d9488;
+      --teal-lt:   #2dd4bf;
+      --coral:     #f4623a;
+      --coral-lt:  #fb9272;
+      --cream:     #faf7f2;
+      --sky:       #e0f7f5;
+      --ink:       #0f1923;
+      --mid-text:  #374151;
     }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background:var(--navy);color:var(--cream);font-family:'Plus Jakarta Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: #04080f;
-      color: var(--cream);
-      font-family: 'Josefin Sans', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* ── CURSOR ── */
-    .cursor {
-      position: fixed;
-      width: 12px; height: 12px;
-      background: var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%,-50%);
-      transition: transform .1s, opacity .3s;
-      mix-blend-mode: difference;
-    }
-    .cursor-ring {
-      position: fixed;
-      width: 36px; height: 36px;
-      border: 1px solid var(--gold-light);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%,-50%);
-      transition: transform .25s ease, width .3s, height .3s;
-      opacity: .5;
-    }
-
-    /* ── CANVAS STARS ── */
-    #starfield {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
+    #cur{position:fixed;width:8px;height:8px;background:var(--coral);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+    #curR{position:fixed;width:30px;height:30px;border:1px solid rgba(45,212,191,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .15s ease,top .15s ease}
+    #sky{position:fixed;inset:0;z-index:0;pointer-events:none}
 
     /* ── HERO ── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 1;
-      padding: 2rem;
-    }
+    .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;z-index:2;background:linear-gradient(160deg,#04091a 0%,#071428 55%,#050f1e 100%);overflow:hidden}
+    .hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:100px;background:var(--cream);clip-path:ellipse(55% 100% at 50% 100%)}
+    .blob{position:absolute;border-radius:50%;pointer-events:none;filter:blur(72px)}
+    .b1{width:500px;height:500px;background:rgba(13,148,136,.18);top:-120px;left:-100px;animation:bdrift 16s ease-in-out infinite alternate}
+    .b2{width:380px;height:380px;background:rgba(244,98,58,.12);bottom:60px;right:-80px;animation:bdrift 20s ease-in-out infinite alternate-reverse}
+    .b3{width:280px;height:280px;background:rgba(45,212,191,.07);top:40%;left:38%;animation:bdrift 13s ease-in-out infinite alternate}
+    @keyframes bdrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(28px,18px) scale(1.07)}}
 
-    .cosmos {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 30% 40%, rgba(74,159,212,.12) 0%, transparent 60%),
-                  radial-gradient(ellipse at 70% 60%, rgba(122,184,232,.07) 0%, transparent 50%),
-                  linear-gradient(180deg, #04080f 0%, #060d1a 100%);
-    }
+    .system{position:relative;width:220px;height:220px;margin:0 auto 2.5rem;flex-shrink:0}
+    .orbit-track{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(45,212,191,.25);animation:ospin 9s linear infinite}
+    @keyframes ospin{to{transform:rotate(360deg)}}
+    .luna-orb{position:absolute;top:-18px;left:50%;margin-left:-18px;width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e8f4ff,#a0c8f0,#6090c8);box-shadow:0 0 16px 5px rgba(160,200,240,.4)}
+    .sol-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+    .sol-core{width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 38% 38%,#fff4c0,#f4a020,#c06800);box-shadow:0 0 0 8px rgba(244,160,32,.08),0 0 35px 12px rgba(244,160,32,.45),0 0 90px 30px rgba(244,100,20,.2);animation:spulse 4s ease-in-out infinite}
+    @keyframes spulse{0%,100%{box-shadow:0 0 35px 12px rgba(244,160,32,.45),0 0 90px 30px rgba(244,100,20,.2)}50%{box-shadow:0 0 55px 20px rgba(244,160,32,.6),0 0 120px 45px rgba(244,100,20,.3)}}
+    .sol-r1{position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(244,160,32,.2);animation:sspin 30s linear infinite}
+    .sol-r2{position:absolute;inset:-28px;border-radius:50%;border:1px dashed rgba(244,160,32,.1);animation:sspin 50s linear infinite reverse}
+    @keyframes sspin{to{transform:rotate(360deg)}}
 
-    /* sol y luna */
-    .orbit-wrapper {
-      position: relative;
-      width: 220px; height: 220px;
-      margin: 0 auto 2.5rem;
-    }
-    .sol {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 90px; height: 90px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 40% 40%, #ffe066, #f5a623, #c97d00);
-      box-shadow: 0 0 60px 20px rgba(245,168,35,.35), 0 0 120px 40px rgba(245,168,35,.15);
-      transform: translate(-50%,-50%);
-      animation: pulse-sol 4s ease-in-out infinite;
-    }
-    .luna {
-      position: absolute;
-      width: 55px; height: 55px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #f0f4ff, #c8d8f0, #8aaad0);
-      box-shadow: 0 0 30px 10px rgba(180,210,255,.3);
-      top: 0; left: 50%;
-      transform-origin: -5px 110px;
-      animation: orbit-luna 8s linear infinite;
-    }
-    @keyframes orbit-luna {
-      from { transform: rotate(0deg) translateX(0); }
-      to   { transform: rotate(360deg) translateX(0); }
-    }
-    @keyframes pulse-sol {
-      0%,100% { box-shadow: 0 0 60px 20px rgba(245,168,35,.4), 0 0 120px 40px rgba(245,168,35,.18); }
-      50%      { box-shadow: 0 0 80px 30px rgba(245,168,35,.55),  0 0 160px 60px rgba(245,168,35,.25); }
-    }
+    .hero-badge{font-size:.68rem;letter-spacing:.5em;color:var(--teal-lt);text-transform:uppercase;font-weight:400;opacity:0;animation:fadeUp .7s .3s forwards}
+    .hero-num{font-family:'Fraunces',serif;font-size:clamp(6rem,20vw,13rem);font-weight:300;line-height:.9;color:transparent;background:linear-gradient(135deg,var(--teal-lt) 0%,var(--teal) 40%,var(--coral-lt) 80%);-webkit-background-clip:text;background-clip:text;opacity:0;animation:fadeUp .8s .5s forwards;letter-spacing:-.02em;margin-top:.4rem}
+    .hero-word{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.6rem,4.5vw,2.8rem);font-weight:300;color:var(--cream);letter-spacing:.06em;opacity:0;animation:fadeUp .8s .7s forwards}
+    .hero-script{font-family:'Great Vibes',cursive;font-size:clamp(2.5rem,7vw,4.5rem);color:var(--coral-lt);margin-top:.6rem;text-shadow:0 0 40px rgba(244,98,58,.4);opacity:0;animation:fadeUp .8s .9s forwards}
+    .hero-date{font-size:.65rem;letter-spacing:.4em;color:rgba(224,247,245,.35);margin-top:.7rem;font-weight:400;opacity:0;animation:fadeUp .8s 1.1s forwards}
+    .hero-quote{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(.95rem,2vw,1.2rem);color:rgba(45,212,191,.8);max-width:500px;margin:2.5rem auto 0;line-height:1.9;opacity:0;animation:fadeUp .8s 1.3s forwards}
+    .scroll-hint{position:absolute;bottom:130px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;font-size:.6rem;letter-spacing:.4em;color:rgba(45,212,191,.4);opacity:0;animation:fadeUp .7s 2s forwards}
+    .scroll-hint i{animation:bounce 2s ease-in-out infinite}
 
-    .hero-badge {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: .75rem;
-      letter-spacing: .35em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      opacity: 0;
-      animation: fadeUp .8s .3s forwards;
-    }
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 10vw, 7rem);
-      font-weight: 300;
-      line-height: 1;
-      letter-spacing: .02em;
-      opacity: 0;
-      animation: fadeUp .9s .5s forwards;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-    .hero-sub {
-      font-size: .85rem;
-      letter-spacing: .25em;
-      color: rgba(250,245,238,.5);
-      margin-top: 1.2rem;
-      opacity: 0;
-      animation: fadeUp .9s .8s forwards;
-    }
-    .hero-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      color: var(--gold-light);
-      max-width: 600px;
-      margin: 2.5rem auto 0;
-      line-height: 1.7;
-      opacity: 0;
-      animation: fadeUp .9s 1.1s forwards;
-    }
-    .scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .5rem;
-      font-size: .65rem;
-      letter-spacing: .3em;
-      color: rgba(122,184,232,.5);
-      opacity: 0;
-      animation: fadeUp .8s 1.8s forwards;
-    }
-    .scroll-hint span { animation: bounce 2s ease-in-out infinite; }
-    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+    /* ── ORIGEN (claro) ── */
+    .origen-section{background:var(--cream);color:var(--ink);padding:7rem 2rem;position:relative;z-index:2}
+    .origen-inner{max-width:800px;margin:0 auto;text-align:center}
+    .origen-section p{font-family:'Fraunces',serif;font-size:1.08rem;line-height:2.1;color:var(--mid-text);margin-bottom:1.4rem}
+    .origen-section p em{color:var(--teal);font-style:italic}
+    .origen-section p strong{color:var(--coral);font-weight:500}
 
-    /* ── SECTIONS ── */
-    section { position: relative; z-index: 1; }
+    /* ── TIMELINE (oscuro) ── */
+    .timeline-section{background:linear-gradient(180deg,var(--navy-mid),#091525);padding:7rem 1.5rem;position:relative;z-index:2}
+    .tl-wrap{max-width:1000px;margin:0 auto;position:relative}
+    .tl-vline{position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(45,212,191,.3) 10%,rgba(45,212,191,.3) 90%,transparent);transform:translateX(-50%)}
+    @media(max-width:640px){.tl-vline{left:18px}}
+    .tl-item{display:grid;grid-template-columns:1fr 52px 1fr;gap:0 1.2rem;margin-bottom:3.2rem;align-items:start}
+    @media(max-width:640px){.tl-item{grid-template-columns:36px 1fr}.tl-item .tl-l{display:none}}
+    .tl-dot{width:42px;height:42px;border-radius:50%;border:1px solid rgba(45,212,191,.4);background:rgba(45,212,191,.07);display:flex;align-items:center;justify-content:center;font-size:.95rem;color:var(--teal-lt);margin:0 auto;position:relative;z-index:1;transition:all .3s}
+    .tl-item:hover .tl-dot{background:rgba(45,212,191,.18);border-color:var(--teal-lt);box-shadow:0 0 20px rgba(45,212,191,.3)}
+    .tl-tag{font-size:.55rem;letter-spacing:.3em;color:rgba(45,212,191,.45);text-align:center;margin-top:.4rem;white-space:nowrap;text-transform:uppercase}
+    .tl-card{background:rgba(255,255,255,.03);border:1px solid rgba(45,212,191,.1);border-radius:8px;padding:1.3rem 1.5rem;transition:all .3s}
+    .tl-item:hover .tl-card{border-color:rgba(45,212,191,.28);background:rgba(45,212,191,.05)}
+    .tl-card h4{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--teal-lt);margin-bottom:.35rem;font-weight:400}
+    .tl-card p{font-size:.86rem;line-height:1.85;color:rgba(224,247,245,.6)}
+    .tl-card p em{color:var(--coral-lt);font-style:normal}
+    .tl-coral h4{color:var(--coral-lt)}
 
-    .section-label {
-      font-size: .65rem;
-      letter-spacing: .5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
+    /* ── SERENATA (claro) ── */
+    .serenata-section{background:linear-gradient(135deg,#e0f7f5 0%,#fef3ee 100%);padding:7rem 2rem;text-align:center;position:relative;z-index:2;overflow:hidden;color:var(--ink)}
+    .serenata-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 30% 40%,rgba(13,148,136,.1),transparent 60%),radial-gradient(ellipse 60% 50% at 70% 60%,rgba(244,98,58,.08),transparent 55%)}
+    .big-num{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(8rem,24vw,16rem);line-height:1;color:transparent;background:linear-gradient(135deg,rgba(13,148,136,.2),rgba(244,98,58,.15));-webkit-background-clip:text;background-clip:text;margin-bottom:-3.5rem;position:relative}
+    .serenata-title{font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:400;position:relative;z-index:1;color:var(--ink)}
+    .serenata-title em{color:var(--coral);font-style:italic}
+    .serenata-sub{font-size:.65rem;letter-spacing:.4em;color:rgba(15,25,35,.4);margin-top:1rem;position:relative;z-index:1;text-transform:uppercase}
+    .roses-row{display:flex;flex-wrap:wrap;justify-content:center;gap:.35rem;margin:2.5rem auto;max-width:480px;position:relative;z-index:1}
+    .rose{font-size:1.4rem;display:inline-block;animation:rfloat 3.5s ease-in-out infinite}
+    .rose:nth-child(2n){animation-delay:.5s}.rose:nth-child(3n){animation-delay:1s}.rose:nth-child(4n){animation-delay:1.5s}.rose:nth-child(5n){animation-delay:2s}
+    @keyframes rfloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-7px) rotate(4deg)}}
+    .serenata-text{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(.98rem,2.2vw,1.2rem);color:rgba(15,25,35,.7);max-width:580px;margin:0 auto;line-height:2;position:relative;z-index:1}
+    .serenata-text strong{color:var(--coral);font-style:normal;font-weight:500}
 
-    /* ── DIVIDER ── */
-    .divider {
-      text-align: center;
-      padding: 3rem 0;
-      color: rgba(122,184,232,.3);
-      font-size: 1.2rem;
-      letter-spacing: .4em;
-    }
+    /* ── GALERÍA (oscuro) ── */
+    .gallery-section{background:linear-gradient(180deg,#091525,var(--navy));padding:6rem 0 7rem;position:relative;z-index:2}
+    .masonry{columns:3;column-gap:1rem;padding:0 1.5rem;max-width:1100px;margin:0 auto}
+    @media(max-width:768px){.masonry{columns:2}}
+    @media(max-width:480px){.masonry{columns:1}}
+    .moment{break-inside:avoid;margin-bottom:1rem;position:relative;overflow:hidden;border-radius:8px;cursor:pointer;border:1px solid rgba(45,212,191,.07)}
+    .moment img{width:100%;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94),filter .4s;filter:saturate(.8) brightness(.85)}
+    .moment:hover img{transform:scale(1.07);filter:saturate(1.05) brightness(1)}
+    .moment-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,14,24,.93) 0%,transparent 55%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:1rem}
+    .moment:hover .moment-overlay{opacity:1}
+    .moment-month{font-size:.55rem;letter-spacing:.3em;color:var(--teal-lt);text-transform:uppercase;margin-bottom:.25rem}
+    .moment-caption{font-family:'Fraunces',serif;font-style:italic;font-size:.92rem;color:var(--cream);line-height:1.4}
+    .badge-new{position:absolute;top:.55rem;right:.55rem;background:var(--coral);color:#fff;font-size:.5rem;letter-spacing:.2em;padding:.2rem .5rem;border-radius:3px;z-index:2;font-weight:500;text-transform:uppercase}
 
-    /* ── MANIFESTO ── */
-    .manifesto {
-      padding: 6rem 2rem;
-      max-width: 780px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .manifesto h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 300;
-      line-height: 1.25;
-      margin-bottom: 2.5rem;
-    }
-    .manifesto h2 strong {
-      color: var(--gold-light);
-      font-weight: 600;
-    }
-    .manifesto p {
-      font-size: 1rem;
-      line-height: 2;
-      color: rgba(250,245,238,.75);
-      margin-bottom: 1.5rem;
-    }
-    .manifesto p em {
-      color: var(--gold-light);
-      font-style: normal;
-    }
+    /* ── VIDEOS (claro) ── */
+    .video-section{background:var(--cream);padding:6rem 1.5rem;text-align:center;position:relative;z-index:2}
+    .videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem;max-width:1000px;margin:2.5rem auto 0}
+    .video-card{border:2px solid rgba(13,148,136,.2);border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 4px 30px rgba(13,148,136,.08);transition:border-color .3s,box-shadow .3s}
+    .video-card:hover{border-color:var(--teal);box-shadow:0 8px 40px rgba(13,148,136,.18)}
+    .video-card video{width:100%;display:block}
+    .video-label{padding:.75rem 1rem;font-size:.65rem;letter-spacing:.3em;color:var(--teal);text-align:left;text-transform:uppercase;font-weight:500;border-top:1px solid rgba(13,148,136,.1)}
 
-    /* ── GALLERY ── */
-    .gallery-section {
-      padding: 4rem 0 6rem;
-      background: linear-gradient(180deg, transparent, rgba(74,159,212,.05), transparent);
-    }
-    .gallery-title {
-      text-align: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 300;
-      margin-bottom: 3rem;
-      padding: 0 1rem;
-    }
-    .masonry {
-      columns: 3;
-      column-gap: 1rem;
-      padding: 0 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    @media(max-width:768px) { .masonry { columns: 2; } }
-    @media(max-width:480px) { .masonry { columns: 1; } }
+    /* ── MENSAJE (oscuro) ── */
+    .mensaje-section{background:linear-gradient(180deg,var(--navy),#0d1e35);padding:7rem 2rem;position:relative;z-index:2;text-align:center;overflow:hidden}
+    .mensaje-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(13,148,136,.1),transparent 70%)}
+    .mensaje-inner{max-width:760px;margin:0 auto;position:relative;z-index:1}
+    .mensaje-section p{font-family:'Fraunces',serif;font-size:1.1rem;line-height:2.2;color:rgba(224,247,245,.78);margin-bottom:1.5rem}
+    .mensaje-section p em{color:var(--teal-lt);font-style:italic}
+    .mensaje-section p strong{color:var(--coral-lt);font-weight:500;font-style:normal}
 
-    .moment {
-      break-inside: avoid;
-      margin-bottom: 1rem;
-      position: relative;
-      overflow: hidden;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .moment img {
-      width: 100%;
-      display: block;
-      transition: transform .6s cubic-bezier(.25,.46,.45,.94);
-      filter: saturate(.85) brightness(.9);
-    }
-    .moment:hover img {
-      transform: scale(1.06);
-      filter: saturate(1.05) brightness(1);
-    }
-    .moment-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(4,8,15,.9) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity .4s;
-      display: flex;
-      align-items: flex-end;
-      padding: 1.2rem;
-    }
-    .moment:hover .moment-overlay { opacity: 1; }
-    .moment-caption {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--gold-light);
-      line-height: 1.4;
-    }
+    /* ── PROMESAS (claro) ── */
+    .promise-section{background:linear-gradient(135deg,#f0fdfa 0%,#fff5f0 100%);padding:7rem 2rem;position:relative;z-index:2}
+    .promises-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;max-width:920px;margin:3.5rem auto 0}
+    .promise-card{border:2px solid transparent;border-radius:10px;padding:1.8rem;background:#fff;box-shadow:0 2px 20px rgba(13,148,136,.07);transition:all .3s;position:relative;overflow:hidden}
+    .promise-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--coral));opacity:0;transition:opacity .3s}
+    .promise-card:hover{border-color:rgba(13,148,136,.2);box-shadow:0 8px 35px rgba(13,148,136,.14);transform:translateY(-4px)}
+    .promise-card:hover::before{opacity:1}
+    .promise-icon{font-size:1.2rem;color:var(--teal);margin-bottom:.9rem}
+    .promise-card h4{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--ink);margin-bottom:.4rem;font-weight:500}
+    .promise-card p{font-size:.86rem;line-height:1.85;color:var(--mid-text)}
 
-    /* ── VIDEO ── */
-    .video-section {
-      padding: 5rem 1.5rem;
-      text-align: center;
-    }
-    .video-wrap {
-      position: relative;
-      max-width: 700px;
-      margin: 2rem auto 0;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(74,159,212,.25);
-      box-shadow: 0 0 80px rgba(74,159,212,.1);
-    }
-    .video-wrap video {
-      width: 100%;
-      display: block;
-    }
-
-    /* ── PROMISE ── */
-    .promise-section {
-      padding: 7rem 2rem;
-      text-align: center;
-      position: relative;
-    }
-    .promise-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 50%, rgba(74,159,212,.08) 0%, transparent 70%);
-    }
-    .promise-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 8rem;
-      font-weight: 300;
-      line-height: 1;
-      color: rgba(122,184,232,.12);
-      margin-bottom: -2rem;
-      position: relative;
-    }
-    .promise-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 6vw, 4.5rem);
-      font-weight: 300;
-      position: relative;
-      z-index: 1;
-    }
-    .promise-title em { color: var(--gold); font-style: italic; }
-
-    .promises-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      max-width: 900px;
-      margin: 4rem auto 0;
-      text-align: left;
-    }
-    .promise-card {
-      border: 1px solid rgba(74,159,212,.15);
-      border-radius: 4px;
-      padding: 2rem;
-      position: relative;
-      background: rgba(74,159,212,.04);
-      transition: border-color .3s, background .3s;
-    }
-    .promise-card:hover {
-      border-color: rgba(74,159,212,.4);
-      background: rgba(74,159,212,.09);
-    }
-    .promise-icon {
-      font-size: 1.3rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .promise-card h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 400;
-      margin-bottom: .5rem;
-      color: var(--gold-light);
-    }
-    .promise-card p {
-      font-size: .88rem;
-      line-height: 1.8;
-      color: rgba(250,245,238,.6);
-    }
-
-    /* ── CARTA FINAL ── */
-    .carta-section {
-      padding: 6rem 2rem 8rem;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .carta-section .section-label { text-align: center; }
-    .carta {
-      background: rgba(74,159,212,.04);
-      border: 1px solid rgba(74,159,212,.14);
-      border-radius: 4px;
-      padding: 3rem 3.5rem;
-      position: relative;
-    }
-    .carta::before {
-      content: '\201C';
-      position: absolute;
-      top: -1rem; left: 2rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 8rem;
-      color: rgba(122,184,232,.1);
-      line-height: 1;
-    }
-    .carta p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      line-height: 2;
-      color: rgba(250,245,238,.85);
-      margin-bottom: 1.2rem;
-    }
-    .carta p em { color: var(--gold-light); }
-    .carta-firma {
-      text-align: right;
-      margin-top: 2rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.2rem;
-      color: var(--gold);
-    }
+    /* ── CARTA (oscuro) ── */
+    .carta-section{background:linear-gradient(180deg,#0d1e35,var(--navy));padding:7rem 2rem 8rem;position:relative;z-index:2}
+    .carta-inner{max-width:700px;margin:0 auto}
+    .carta{border:1px solid rgba(45,212,191,.18);border-radius:10px;padding:3rem 3.5rem;background:rgba(255,255,255,.03);position:relative;box-shadow:0 0 60px rgba(13,148,136,.06)}
+    @media(max-width:480px){.carta{padding:2rem 1.6rem}}
+    .carta::before{content:'\201C';position:absolute;top:-1.5rem;left:2rem;font-family:'Fraunces',serif;font-size:10rem;color:rgba(45,212,191,.06);line-height:1;pointer-events:none}
+    .carta p{font-family:'Fraunces',serif;font-size:1.07rem;line-height:2.15;color:rgba(224,247,245,.85);margin-bottom:1.2rem}
+    .carta p em{color:var(--teal-lt);font-style:italic}
+    .carta-firma{text-align:right;margin-top:2rem;font-family:'Great Vibes',cursive;font-size:2.2rem;color:var(--coral-lt);text-shadow:0 0 20px rgba(244,98,58,.3)}
 
     /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 3rem 1rem 4rem;
-      position: relative;
-      z-index: 1;
-    }
-    .footer-sym {
-      font-size: 2rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      display: block;
-      animation: pulse-sol 3s ease-in-out infinite;
-    }
-    footer p {
-      font-size: .72rem;
-      letter-spacing: .3em;
-      color: rgba(122,184,232,.4);
-    }
+    footer{background:var(--navy);position:relative;z-index:2;text-align:center;padding:4rem 1rem 5rem}
+    .footer-emblem{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:1.5rem}
+    .fe-sol{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 38% 38%,#fff4c0,#f4a020);box-shadow:0 0 18px 6px rgba(244,160,32,.4);animation:spulse 4s ease-in-out infinite}
+    .fe-line{width:60px;height:1px;background:linear-gradient(90deg,rgba(244,160,32,.4),rgba(45,212,191,.4))}
+    .fe-luna{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e8f4ff,#90b8e0);box-shadow:0 0 12px 4px rgba(160,200,240,.3)}
+    footer p{font-size:.65rem;letter-spacing:.4em;color:rgba(45,212,191,.3);margin-bottom:.35rem;text-transform:uppercase}
 
     /* ── LIGHTBOX ── */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(4,8,15,.96);
-      z-index: 9000;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      cursor: pointer;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+    .lightbox{display:none;position:fixed;inset:0;background:rgba(4,8,18,.97);z-index:9000;align-items:center;justify-content:center;padding:2rem;cursor:pointer}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px}
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(24px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity .8s ease, transform .8s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* ── SHARED ── */
+    .s-label{font-size:.62rem;letter-spacing:.5em;text-transform:uppercase;font-weight:500;text-align:center;margin-bottom:.6rem}
+    .s-title{font-family:'Fraunces',serif;font-size:clamp(1.9rem,4.5vw,3rem);font-weight:400;text-align:center;margin-bottom:3.5rem;line-height:1.35}
+    .s-title em{font-style:italic}
+    .aline{width:50px;height:2px;border-radius:2px;margin:1rem auto 1.8rem}
 
-    /* ── GOLDEN LINE ── */
-    .golden-line {
-      width: 60px;
-      height: 1px;
-      background: var(--gold);
-      margin: 1.5rem auto;
-      opacity: .5;
-    }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
   </style>
 </head>
 <body>
+<canvas id="sky"></canvas>
+<div id="cur"></div>
+<div id="curR"></div>
 
-<canvas id="starfield"></canvas>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- ══════════ HERO ══════════ -->
+<!-- HERO -->
 <section class="hero">
-  <div class="cosmos"></div>
-
-  <div class="orbit-wrapper">
-    <div class="sol"></div>
-    <div class="luna"></div>
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="system">
+    <div class="orbit-track"><div class="luna-orb"></div></div>
+    <div class="sol-wrap"><div class="sol-r1"></div><div class="sol-r2"></div><div class="sol-core"></div></div>
   </div>
+  <p class="hero-badge">23 · VII · 2024 &nbsp;—&nbsp; 23 · IV · 2025</p>
+  <div class="hero-num">9</div>
+  <p class="hero-word">meses contigo</p>
+  <p class="hero-script">Joel & Elizabeth</p>
+  <p class="hero-date">Ahuacatlán · Jalpan · Querétaro · Sierra Gorda</p>
+  <blockquote class="hero-quote">"Empezó con un mensaje en Facebook<br>y se convirtió en lo más bonito<br>que me ha pasado."</blockquote>
+  <div class="scroll-hint">DESPLÁZATE <i class="fa-solid fa-chevron-down"></i></div>
+</section>
 
-  <p class="hero-badge">7 meses • J &amp; E</p>
-  <h1 class="hero-title">Tú eres mi<br><em>luna</em></h1>
-  <p class="hero-sub">Y yo seré siempre tu sol</p>
-
-  <blockquote class="hero-quote">
-    "Hay distancias que no miden kilómetros,<br>
-    sino la cantidad de cielo que compartimos<br>
-    aunque estemos lejos."
-  </blockquote>
-
-  <div class="scroll-hint">
-    DESPLÁZATE
-    <span><i class="fa-solid fa-chevron-down"></i></span>
+<!-- ORIGEN (claro) -->
+<section class="origen-section">
+  <div class="origen-inner">
+    <p class="s-label reveal" style="color:var(--teal)">El principio de todo</p>
+    <div class="aline reveal" style="background:linear-gradient(90deg,transparent,var(--teal),transparent)"></div>
+    <h2 class="s-title reveal" style="color:var(--ink)">Cómo el universo nos <em style="color:var(--coral)">juntó</em></h2>
+    <p class="reveal">Fue por Facebook. Parejas. Dos extraños en la misma pantalla — y algo que desde el primer mensaje se sintió diferente. <em>Platicamos todos los días, sin falta,</em> desde el 7 u 8 de julio. Quince días de conversación diaria hasta que el 23 de julio la convencí de ser mi pareja.</p>
+    <p class="reveal">No hace falta explicar cómo sucedió — quienes se eligen así lo entienden: hay personas con las que hablar no es un esfuerzo, es un alivio. Ella fue eso desde el primer día. <strong>Un músico de la Sierra, una chica de Querétaro — y Facebook de celestino.</strong></p>
   </div>
 </section>
 
-<!-- ══════════ MANIFIESTO ══════════ -->
-<section class="manifesto reveal">
-  <p class="section-label">Siete meses de galaxia</p>
-  <div class="golden-line"></div>
-  <h2>Hoy son <strong>siete meses</strong> de ser<br>el universo más pequeño<br>y el más <strong>infinito</strong> a la vez</h2>
-  <p>
-    Este mes no pude mandarte nada. Económicamente no es un buen momento —
-    y eso pesa, claro que pesa. Pero hay algo que no depende del dinero,
-    algo que ninguna crisis puede congelar ni apagar:
-    <em>te amo muchísimo, y eso no cambia.</em>
-  </p>
-  <p>
-    Te lo compensaré, vida mía. No como promesa vacía dicha al aire,
-    sino como la certeza de un sol que sabe que va a salir mañana
-    aunque hoy esté nublado. Me encantas.
-    Me encanta saber que te tengo en mi vida —
-    <em>eso solo ya es la fortuna más grande que he tenido.</em>
-  </p>
-  <p>
-    Ella se levanta cada mañana y va a trabajar a la comer como si el mundo no pesara.
-    Yo la miro desde el otro lado del mapa y pienso:
-    <em>¿cómo alguien tan grande cabe en un teléfono?</em>
-    La admiro tanto que duele. La amo tanto que cura.
-  </p>
-  <p>
-    Pronto — pronto de verdad — nos veremos cada mañana al despertar.
-    No en una pantalla. En la misma habitación. En la misma vida.
-    A mitad de este año nos casamos, y ese día
-    el sol y la luna dejarán de perseguirse para <em>por fin</em> encontrarse.
-  </p>
+<!-- TIMELINE (oscuro) -->
+<section class="timeline-section">
+  <div class="tl-wrap">
+    <div class="tl-vline"></div>
+    <p class="s-label reveal" style="color:var(--teal-lt)">Nueve meses de historia</p>
+    <div class="aline reveal" style="background:linear-gradient(90deg,transparent,var(--teal-lt),transparent)"></div>
+    <h2 class="s-title reveal" style="color:var(--cream)">Cada momento <em style="color:var(--teal-lt)">importa</em></h2>
+
+    <div class="tl-item reveal"><div class="tl-l"></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-heart"></i></div><span class="tl-tag">Jul 2024</span></div><div><div class="tl-card"><h4>23 de julio — el sí</h4><p>15 días de mensajes diarios y el 23 la convencí. Desde ese día el calendario tiene un antes y un después. <em>El mejor sí de mi vida.</em></p></div></div></div>
+
+    <div class="tl-item reveal"><div><div class="tl-card tl-coral" style="text-align:right"><h4>Primera vez en persona</h4><p>Nos vimos en San Juan del Río. Primer cine juntos. <em>La mejor película fue ella.</em></p></div></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-film"></i></div><span class="tl-tag">Ago 2024</span></div><div class="tl-l"></div></div>
+
+    <div class="tl-item reveal"><div class="tl-l"></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-seedling"></i></div><span class="tl-tag">Sep 2024</span></div><div><div class="tl-card"><h4>Flores amarillas — 21 sep</h4><p>Le mandé sus primeras flores amarillas. <em>Amarillo — el color de lo que no se marcha.</em></p></div></div></div>
+
+    <div class="tl-item reveal"><div><div class="tl-card tl-coral" style="text-align:right"><h4>Flores porque sí — 8 oct</h4><p>Sin ocasión especial. Solo porque quería. <em>A veces el mejor motivo es no tener ninguno.</em></p></div></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-spa"></i></div><span class="tl-tag">Oct 2024</span></div><div class="tl-l"></div></div>
+
+    <div class="tl-item reveal"><div class="tl-l"></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-music"></i></div><span class="tl-tag">Nov 2024</span></div><div><div class="tl-card"><h4>Cumpleaños + Feria + Conciertos</h4><p>Ella me regaló cajita con cartas, hotwheels, gatito y taza de Batman. Después: feria, Mago de Oz, Tigres del Norte y la rueda de la fortuna juntos. <em>Noches así no se olvidan.</em></p></div></div></div>
+
+    <div class="tl-item reveal"><div><div class="tl-card tl-coral" style="text-align:right"><h4>6 meses — primer Jalpan</h4><p>La traje por primera vez a Jalpan, la presa y el río Ayutla. <em>La Sierra la recibió bien.</em></p></div></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-water"></i></div><span class="tl-tag">Ene 2025</span></div><div class="tl-l"></div></div>
+
+    <div class="tl-item reveal"><div class="tl-l"></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-gift"></i></div><span class="tl-tag">Feb 2025</span></div><div><div class="tl-card"><h4>7 meses y San Valentín</h4><p>Le di flores y funda personalizada de Morat. Ella me mandó Snoopy, globo y chocolates. <em>Los dos sabemos querer.</em></p></div></div></div>
+
+    <div class="tl-item reveal"><div><div class="tl-card tl-coral" style="text-align:right"><h4>Conocí a su familia — Amealco</h4><p>Cumpleaños del papá de Elizabeth en marzo. Amealco el 8 de marzo. <em>Momentos que no tienen reversa — y no los quieres.</em></p></div></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-users"></i></div><span class="tl-tag">Mar 2025</span></div><div class="tl-l"></div></div>
+
+    <div class="tl-item reveal"><div class="tl-l"></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-sun"></i></div><span class="tl-tag">21 Mar 2025</span></div><div><div class="tl-card"><h4>Flores de los dos — al mismo tiempo</h4><p>El 21 de marzo los dos nos mandamos flores amarillas sin acordarlo. <em>Simplemente los dos pensamos igual.</em></p></div></div></div>
+
+    <div class="tl-item reveal"><div><div class="tl-card tl-coral" style="text-align:right"><h4>Vino a mi mundo — Jalpan + Ahuacatlán</h4><p>27 rosas estilo el patrón, serenata con mariachi, bar con grupo norteño hasta la 1:30 am. Al día siguiente conoció a mi mamá y hermano en Ahuacatlán. Al irse me regaló cinturón y cartera. <em>Mi mundo ya es tuyo. Completo.</em></p></div></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot" style="border-color:rgba(244,98,58,.6);color:var(--coral-lt)"><i class="fa-solid fa-star"></i></div><span class="tl-tag" style="color:rgba(244,98,58,.55)">Abr 2025</span></div><div class="tl-l"></div></div>
+
+    <div class="tl-item reveal"><div class="tl-l"></div><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot"><i class="fa-solid fa-moon"></i></div><span class="tl-tag">Hoy</span></div><div><div class="tl-card"><h4>9 meses — y contando</h4><p>Nueve órbitas completas. La distancia no pudo con nosotros. <em>Te amo más que ayer y menos que mañana.</em></p></div></div></div>
+  </div>
 </section>
 
-<div class="divider">✦ &nbsp;&nbsp; ✦ &nbsp;&nbsp; ✦</div>
+<!-- SERENATA (claro) -->
+<section class="serenata-section reveal">
+  <div class="big-num">27</div>
+  <h2 class="serenata-title">Las rosas que te <em>traje</em></h2>
+  <p class="serenata-sub">Jalpan de Serra · Feria de Abril · estilo el patrón</p>
+  <div class="roses-row">
+    <span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span>
+    <span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span>
+    <span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span>
+    <span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span>
+  </div>
+  <p class="serenata-text">Dicen los Ángeles Azules: <strong>"en todos los abriles te llevaré 20 rosas."</strong><br>Pero tú mereces más que lo que dice cualquier canción.<br>Fueron <strong>27 — estilo el patrón.</strong> Con mariachi contratado,<br>con grupo norteño, con todo.<br><br>Cuando se trata de ti, siempre voy más lejos de la letra.</p>
+</section>
 
-<!-- ══════════ GALERÍA ══════════ -->
+<!-- GALERÍA (oscuro) -->
 <section class="gallery-section">
-  <h2 class="gallery-title reveal">Momentos que el tiempo <em style="color:var(--gold-light);font-style:italic">guarda</em></h2>
-
-  <div class="masonry" id="gallery">
-
-    <div class="moment reveal" onclick="openLightbox('amarillasflore.jpg')">
-      <img src="amarillasflore.jpg" alt="Flores amarillas" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">Las flores que florecieron antes que las palabras</p>
-      </div>
-    </div>
-
-    <div class="moment reveal" onclick="openLightbox('manosjuntas.jpeg')">
-      <img src="manosjuntas.jpeg" alt="Manos juntas" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">Dos manos que aprendieron el lenguaje del otro</p>
-      </div>
-    </div>
-
-    <div class="moment reveal" onclick="openLightbox('CorazonF.png')">
-      <img src="CorazonF.png" alt="Corazón" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">El mapa de todo lo que siento</p>
-      </div>
-    </div>
-
-    <div class="moment reveal" onclick="openLightbox('JyE.png')">
-      <img src="JyE.png" alt="J y E" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">Dos iniciales que lo dicen todo</p>
-      </div>
-    </div>
-
-    <div class="moment reveal" onclick="openLightbox('primeras_flores.jpg')">
-      <img src="primeras_flores.jpg" alt="Primeras flores" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">El primer lenguaje que te hablé sin palabras</p>
-      </div>
-    </div>
-
-    <div class="moment reveal" onclick="openLightbox('floreamarillas.jpg')">
-      <img src="floreamarillas.jpg" alt="Flores amarillas 2" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">Amarillo — el color de lo que no se marcha</p>
-      </div>
-    </div>
-
-    <div class="moment reveal" onclick="openLightbox('regalo6m.jpg')">
-      <img src="regalo6m.jpg" alt="Regalo 6 meses" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">Seis meses en un envoltorio pequeño, un amor sin límite</p>
-      </div>
-    </div>
-
-    <div class="moment reveal" onclick="openLightbox('regalodeminovia.jpeg')">
-      <img src="regalodeminovia.jpeg" alt="Regalo de mi novia" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">Me regalaste algo que no se cabe en ninguna caja</p>
-      </div>
-    </div>
-
-    <div class="moment reveal" onclick="openLightbox('JyEPresa.jpg')">
-      <img src="JyEPresa.jpg" alt="J y E en la presa" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">El agua siempre busca el camino — como yo hacia ti</p>
-      </div>
-    </div>
-
-    <div class="moment reveal" onclick="openLightbox('clash_conminovia2.jpg')">
-      <img src="clash_conminovia2.jpg" alt="Juntos" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">Hasta en los mundos virtuales te elijo</p>
-      </div>
-    </div>
-
-    <div class="moment reveal" onclick="openLightbox('cine_con_mi_luna.jpg')">
-      <img src="cine_con_mi_luna.jpg" alt="Cine" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">La mejor película fue mirarte a ti en la oscuridad</p>
-      </div>
-    </div>
-
-    <div class="moment reveal" onclick="openLightbox('ultimas_flores.jpg')">
-      <img src="ultimas_flores.jpg" alt="Últimas flores" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">Ninguna flor es la última cuando tú sigues floreciendo</p>
-      </div>
-    </div>
-
-    <div class="moment reveal" onclick="openLightbox('Medio año.jpeg')">
-      <img src="Medio año.jpeg" alt="Medio año" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-      <div class="moment-overlay">
-        <p class="moment-caption">Medio año de saber que quiero todos los demás</p>
-      </div>
-    </div>
-
+  <p class="s-label reveal" style="color:var(--teal-lt)">Momentos guardados</p>
+  <div class="aline reveal" style="background:linear-gradient(90deg,transparent,var(--teal-lt),transparent)"></div>
+  <h2 class="s-title reveal" style="color:var(--cream)">Lo que el tiempo <em style="color:var(--coral-lt)">no borrará</em></h2>
+  <div class="masonry">
+    <div class="moment reveal" onclick="openLightbox('juntosjalpan.jpeg')"><span class="badge-new">Nuevo</span><img src="juntosjalpan.jpeg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">Abril 2025</p><p class="moment-caption">La feria de Jalpan — nuestra noche en la Sierra</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('Misfloresama.jpeg')"><span class="badge-new">Nuevo</span><img src="Misfloresama.jpeg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">Abril 2025</p><p class="moment-caption">27 rosas — siempre más que la canción</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('KFCjuntos.jpeg')"><span class="badge-new">Nuevo</span><img src="KFCjuntos.jpeg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">Abril 2025</p><p class="moment-caption">Hasta el KFC sabe diferente contigo</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('besoamealcoo.jpeg')"><span class="badge-new">Nuevo</span><img src="besoamealcoo.jpeg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">8 Mar 2025</p><p class="moment-caption">Amealco — el mejor momento de cualquier lugar</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('amealcojuntos.jpeg')"><span class="badge-new">Nuevo</span><img src="amealcojuntos.jpeg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">8 Mar 2025</p><p class="moment-caption">Amealco de Bonfil — contigo cualquier lugar es destino</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('miregalo14feb.jpeg')"><span class="badge-new">Nuevo</span><img src="miregalo14feb.jpeg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">14 Feb 2025</p><p class="moment-caption">Snoopy, globo y chocolates — ella también sabe querer bien</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('regalo14feb.jpeg')"><span class="badge-new">Nuevo</span><img src="regalo14feb.jpeg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">14 Feb 2025</p><p class="moment-caption">Flores y funda de Morat — porque merece lo pensado</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('amarillasflore.jpg')"><img src="amarillasflore.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">21 Mar 2025</p><p class="moment-caption">Los dos nos mandamos flores el mismo día — sin acordarlo</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('cine_con_mi_luna.jpg')"><img src="cine_con_mi_luna.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">Ago 2024</p><p class="moment-caption">San Juan del Río — la primera vez en persona</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('primeras_flores.jpg')"><img src="primeras_flores.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">Ago 2024</p><p class="moment-caption">El primer lenguaje que te hablé sin palabras</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('floreamarillas.jpg')"><img src="floreamarillas.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">Sep 2024</p><p class="moment-caption">21 de septiembre — amarillo, el color de lo que no se marcha</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('ultimas_flores.jpg')"><img src="ultimas_flores.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">Oct 2024</p><p class="moment-caption">Flores sin motivo — el mejor motivo de todos</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('regalodeminovia.jpeg')"><img src="regalodeminovia.jpeg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">Nov 2024</p><p class="moment-caption">Cartas, hotwheels, gatito y Batman — el regalo más pensado</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('manosjuntas.jpeg')"><img src="manosjuntas.jpeg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">Nov 2024</p><p class="moment-caption">La rueda de la fortuna — dos manos que se encontraron</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('JyEPresa.jpg')"><img src="JyEPresa.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">Ene 2025</p><p class="moment-caption">La presa de Jalpan y el río Ayutla</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('regalo6m.jpg')"><img src="regalo6m.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">Ene 2025</p><p class="moment-caption">Seis meses — y un regalo que lo decía todo</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('Medio año.jpeg')"><img src="Medio año.jpeg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-month">Ene 2025</p><p class="moment-caption">Medio año de saber que quiero todos los demás contigo</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('CorazonF.png')"><img src="CorazonF.png" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-caption">Nuestras iniciales en fuego — porque así es</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('JyE.png')"><img src="JyE.png" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-caption">Nosotros dos — hasta en caricatura somos bonitos</p></div></div>
+    <div class="moment reveal" onclick="openLightbox('clash_conminovia2.jpg')"><img src="clash_conminovia2.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"/><div class="moment-overlay"><p class="moment-caption">Hasta en Clash of Clans te elijo</p></div></div>
   </div>
 </section>
 
-<!-- ══════════ VIDEOS ══════════ -->
-<section class="video-section reveal">
-  <p class="section-label">Momentos en movimiento</p>
-  <div class="golden-line"></div>
-  <h3 class="gallery-title" style="margin-bottom:0">Nuestros recuerdos en movimiento</h3>
-
-  <div class="video-wrap" style="margin-bottom:2rem;">
-    <video controls preload="metadata" onerror="this.parentElement.style.display='none'">
-      <source src="mago_oz.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="video-wrap">
-    <video controls preload="metadata" onerror="this.parentElement.style.display='none'">
-      <source src="tigres.mp4" type="video/mp4">
-    </video>
+<!-- VIDEOS (claro) -->
+<section class="video-section">
+  <p class="s-label reveal" style="color:var(--teal)">Recuerdos en movimiento</p>
+  <div class="aline reveal" style="background:linear-gradient(90deg,transparent,var(--teal),transparent)"></div>
+  <h2 class="s-title reveal" style="color:var(--ink)">Momentos que <em style="color:var(--coral)">se mueven</em></h2>
+  <div class="videos-grid">
+    <div class="video-card reveal"><video controls preload="metadata" onerror="this.parentElement.style.display='none'"><source src="serenataJalpan.mp4" type="video/mp4"></video><p class="video-label">✦ La serenata · Jalpan de Serra</p></div>
+    <div class="video-card reveal"><video controls preload="metadata" onerror="this.parentElement.style.display='none'"><source src="entregaestilopatron.mp4" type="video/mp4"></video><p class="video-label">✦ Las 27 rosas · estilo el patrón</p></div>
+    <div class="video-card reveal"><video controls preload="metadata" onerror="this.parentElement.style.display='none'"><source src="videobeso.mp4" type="video/mp4"></video><p class="video-label">✦ Un beso en Jalpan</p></div>
+    <div class="video-card reveal"><video controls preload="metadata" onerror="this.parentElement.style.display='none'"><source src="mago_oz.mp4" type="video/mp4"></video><p class="video-label">✦ Mago de Oz · Feria Nov 2024</p></div>
+    <div class="video-card reveal"><video controls preload="metadata" onerror="this.parentElement.style.display='none'"><source src="tigres.mp4" type="video/mp4"></video><p class="video-label">✦ Tigres del Norte · Feria Nov 2024</p></div>
   </div>
 </section>
 
-<div class="divider">✦ &nbsp;&nbsp; ✦ &nbsp;&nbsp; ✦</div>
+<!-- MENSAJE (oscuro) -->
+<section class="mensaje-section">
+  <div class="mensaje-inner">
+    <p class="s-label reveal" style="color:var(--teal-lt)">Desde el corazón</p>
+    <div class="aline reveal" style="background:linear-gradient(90deg,transparent,var(--teal-lt),transparent)"></div>
+    <h2 class="s-title reveal" style="color:var(--cream)">Lo que te <em style="color:var(--coral-lt)">quiero decir</em></h2>
+    <p class="reveal">Me encanta estar contigo. <em>Me encanta de verdad, sin adornos.</em> Sé que no soy fácil a veces — que tengo mis días raros, mis silencios, mis momentos — y aun así sigues aquí. <strong>Eso no lo da cualquiera.</strong></p>
+    <p class="reveal">No soy perfecto, mi amor. Pero estoy aprendiendo — <em>aprendiendo a quererte cada vez mejor, cada vez más.</em> Como dice Morat: cada mes descubro algo nuevo de ti que me enamora, y algo de mí que quiero mejorar por nosotros.</p>
+    <p class="reveal">Sé que habrá días malos. <em>Espero que sean poquitos, mi vida.</em> Pero cuando lleguen, quiero que recuerdes esto: elegirte no fue un accidente, fue una decisión — <strong>y la tomo de nuevo cada mañana.</strong> El punto es seguir juntos. Siempre juntos.</p>
+    <p class="reveal"><em>Te amo mucho, Elizabeth. Más de lo que cabe en esta página.</em></p>
+  </div>
+</section>
 
-<!-- ══════════ PROMESAS ══════════ -->
+<!-- PROMESAS (claro) -->
 <section class="promise-section">
-  <div class="promise-number">∞</div>
-  <h2 class="promise-title reveal">Lo que te <em>juro</em></h2>
-
+  <p class="s-label reveal" style="color:var(--teal)">Lo que te juro</p>
+  <div class="aline reveal" style="background:linear-gradient(90deg,transparent,var(--teal),transparent)"></div>
+  <h2 class="s-title reveal" style="color:var(--ink)">Promesas que <em style="color:var(--coral)">no caducan</em></h2>
   <div class="promises-grid">
-
-    <div class="promise-card reveal">
-      <div class="promise-icon"><i class="fa-solid fa-house-heart"></i></div>
-      <h4>Un hogar a mitad de año</h4>
-      <p>Pronto despertaremos en el mismo espacio. No en pantallas. En la misma mañana. Te lo prometo como si ya fuera un recuerdo.</p>
-    </div>
-
-    <div class="promise-card reveal">
-      <div class="promise-icon"><i class="fa-solid fa-rings-wedding"></i></div>
-      <h4>Casarnos de verdad</h4>
-      <p>Un pobre músico-ingeniero que te eligió no porque sea el mejor, sino porque ningún otro mundo tiene sentido sin ti en él.</p>
-    </div>
-
-    <div class="promise-card reveal">
-      <div class="promise-icon"><i class="fa-solid fa-star"></i></div>
-      <h4>Admirarte siempre</h4>
-      <p>Eres trabajadora como pocas. Te levantas, enfrentas el día y sigues siendo la luna más brillante del cielo. Te admiro sin fin.</p>
-    </div>
-
-    <div class="promise-card reveal">
-      <div class="promise-icon"><i class="fa-solid fa-sun"></i></div>
-      <h4>Ser tu sol constante</h4>
-      <p>El sol no pide permiso para salir cada mañana. Tampoco yo pido permiso para amarte cada día, incluyendo los difíciles.</p>
-    </div>
-
-    <div class="promise-card reveal">
-      <div class="promise-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-      <h4>Darte lo que mereces</h4>
-      <p>Hoy no tengo todo. Pero tengo dirección, tengo título llegando, tengo manos y tengo un amor hiperbólicamente infinito por ti.</p>
-    </div>
-
-    <div class="promise-card reveal">
-      <div class="promise-icon"><i class="fa-solid fa-moon"></i></div>
-      <h4>Encontrarte cada noche</h4>
-      <p>Como el sol que se pone sabiendo que la luna saldrá, cada noche me duermo sabiendo que mañana seguirás siendo mía y yo tuyo.</p>
-    </div>
-
+    <div class="promise-card reveal"><div class="promise-icon"><i class="fa-solid fa-rings-wedding"></i></div><h4>Casarnos de verdad</h4><p>Un músico-ingeniero de la Sierra que te eligió no porque sea el mejor, sino porque ningún mundo tiene sentido sin ti en él.</p></div>
+    <div class="promise-card reveal"><div class="promise-icon"><i class="fa-solid fa-house-heart"></i></div><h4>Un mismo techo</h4><p>Pronto despertaremos en el mismo espacio. No en pantallas — en la misma mañana, en la misma vida. Ya casi, mi vida.</p></div>
+    <div class="promise-card reveal"><div class="promise-icon"><i class="fa-solid fa-star"></i></div><h4>Admirarte siempre</h4><p>Eres trabajadora como pocas. Te levantas y enfrentas cada día. Te admiro más de lo que soy capaz de decirte en palabras.</p></div>
+    <div class="promise-card reveal"><div class="promise-icon"><i class="fa-solid fa-music"></i></div><h4>Más serenatas</h4><p>La de Jalpan fue la primera con mariachi contratado. Hay muchas más canciones tuyas guardadas en este corazón de músico.</p></div>
+    <div class="promise-card reveal"><div class="promise-icon"><i class="fa-solid fa-sun"></i></div><h4>Ser tu sol constante</h4><p>El sol no pide permiso para salir. Tampoco yo pido permiso para amarte cada día — especialmente los difíciles.</p></div>
+    <div class="promise-card reveal"><div class="promise-icon"><i class="fa-solid fa-hand-holding-heart"></i></div><h4>Seguir aprendiendo</h4><p>Aprendiendo a quererte, como dice Morat. Cada día un poco mejor. Porque tú mereces a alguien que se esfuerce — y ese soy yo.</p></div>
   </div>
 </section>
 
-<div class="divider">✦ &nbsp;&nbsp; ✦ &nbsp;&nbsp; ✦</div>
-
-<!-- ══════════ CARTA ══════════ -->
+<!-- CARTA (oscuro) -->
 <section class="carta-section">
-  <p class="section-label">Una carta sin borrador</p>
-  <div class="golden-line"></div>
-
-  <div class="carta reveal">
-    <p>
-      Mi luna,
-    </p>
-    <p>
-      Hoy son siete meses. No te lo digo como quien pone una vela en un pastel —
-      te lo digo como quien lleva siete meses mirando al cielo y encontrando
-      el mismo punto luminoso que lo orienta todo.
-    </p>
-    <p>
-      Este mes no pude darte nada material. Y eso me pesa más de lo que crees.
-      Pero también sé que tú nunca me has pedido riquezas —
-      me has pedido presencia, y esa nunca te la he negado.
-      <em>Te lo compensaré. Lo juro.</em>
-    </p>
-    <p>
-      La distancia podría habernos apagado. <em>No lo hizo.</em>
-      En cambio, nos enseñó algo que los que viven juntos tardan años en aprender:
-      que elegirse no es un acto de circunstancia, es un acto de voluntad pura.
-    </p>
-    <p>
-      Me encantas. Me encanta saber que te tengo.
-      Me encanta que existas en el mismo universo que yo.
-      Trabajadora, fuerte, luminosa — eres la luna más brillante de todos los cielos posibles.
-    </p>
-    <p>
-      Nos veremos cada mañana. <em>Te lo juro sobre todas las órbitas del universo.</em>
-    </p>
-    <p>
-      Con un amor tan grande que no cabe en ningún blog,
-      en ninguna página web, en ningún universo conocido —
-    </p>
-    <div class="carta-firma">
-      Tu sol, que siempre vuelve a salir. ☀️
+  <div class="carta-inner">
+    <p class="s-label reveal" style="color:var(--teal-lt)">Sin borrador</p>
+    <div class="aline reveal" style="background:linear-gradient(90deg,transparent,var(--teal-lt),transparent)"></div>
+    <div class="carta reveal">
+      <p>Mi luna,</p>
+      <p>Hoy son nueve meses desde aquel 23 de julio en que te convencí de ser mi pareja después de quince días de hablar contigo todos los días sin falta. No te lo digo como dato — te lo digo como quien mira atrás y no puede creer la buena suerte que tuvo.</p>
+      <p>En estos nueve meses fuiste al cine en San Juan del Río, recibiste flores en septiembre, en octubre y en marzo, aguantaste mis días raros, me regalaste la cajita más bonita de mi cumpleaños, escuchaste a Mago de Oz y los Tigres conmigo, conociste la presa de Jalpan — y este mes <em>conociste a mi mamá y a mi hermano en Ahuacatlán.</em> Mi mundo ya es tuyo. Completo.</p>
+      <p>Sé que no soy perfecto. Pero estoy aprendiendo — aprendiendo a quererte cada vez mejor, cada vez más. Habrá días malos, mi vida. <em>Espero que sean poquitos.</em> Pero el punto, siempre el punto, es seguir juntos.</p>
+      <p><em>Te amo mucho, Elizabeth. Más que cualquier canción que pueda tocar.</em></p>
+      <div class="carta-firma">Tu sol, que siempre vuelve ☀️</div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ FOOTER ══════════ -->
+<!-- FOOTER -->
 <footer>
-  <span class="footer-sym"><i class="fa-solid fa-eclipse"></i></span>
-  <p>J &amp; E • 7 MESES • UN ECLIPSE ETERNO</p>
-  <p style="margin-top:.5rem">Hecho con amor desde la distancia · 2026</p>
+  <div class="footer-emblem"><div class="fe-sol"></div><div class="fe-line"></div><div class="fe-luna"></div></div>
+  <p>J &amp; E · 9 Meses · Un amor de Sierra</p>
+  <p>23 · VII · 2024 — 23 · IV · 2025</p>
+  <p style="margin-top:.8rem;font-size:.55rem;opacity:.4">Hecho con amor desde Ahuacatlán, Sierra Gorda · 2025</p>
 </footer>
 
-<!-- ══════════ LIGHTBOX ══════════ -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img" src="" alt=""/>
-</div>
-
-<!-- Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lb-img" src="" alt=""/></div>
 
 <script>
-  /* ── CURSOR ── */
-  const cursor = document.getElementById('cursor');
-  const ring   = document.getElementById('cursorRing');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top  = e.clientY + 'px';
-    setTimeout(() => {
-      ring.style.left = e.clientX + 'px';
-      ring.style.top  = e.clientY + 'px';
-    }, 60);
-  });
+  const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+  document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';setTimeout(()=>{curR.style.left=e.clientX+'px';curR.style.top=e.clientY+'px'},70)});
 
-  /* ── STARFIELD ── */
-  const canvas = document.getElementById('starfield');
-  const ctx    = canvas.getContext('2d');
-  let W, H, stars = [];
+  const canvas=document.getElementById('sky'),ctx=canvas.getContext('2d');
+  let W,H,stars=[],comets=[];
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+  function initStars(){stars=Array.from({length:240},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+.2,a:Math.random(),speed:.0003+Math.random()*.0006,type:Math.random()}))}
+  function spawnComet(){if(Math.random()>.005)return;const a=(Math.random()*20+10)*Math.PI/180;comets.push({x:Math.random()*W*.7,y:Math.random()*H*.2,vx:Math.cos(a)*11,vy:Math.sin(a)*11,life:1,decay:.028,trail:[]})}
+  function draw(){
+    ctx.clearRect(0,0,W,H);const t=Date.now();
+    stars.forEach(s=>{s.a=.2+.8*Math.abs(Math.sin(t*s.speed+s.x*.01));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=s.type>.8?`rgba(45,212,191,${s.a*.5})`:s.type>.6?`rgba(244,98,58,${s.a*.35})`:`rgba(220,235,255,${s.a*.5})`;ctx.fill()});
+    spawnComet();
+    comets.forEach(c=>{c.trail.push({x:c.x,y:c.y,a:c.life});c.x+=c.vx;c.y+=c.vy;c.life-=c.decay;c.trail.forEach((pt,j)=>{const a=pt.a*(j/c.trail.length)*.5;ctx.beginPath();ctx.arc(pt.x,pt.y,1,0,Math.PI*2);ctx.fillStyle=`rgba(45,212,191,${a})`;ctx.fill()});if(c.trail.length>18)c.trail.shift()});
+    comets=comets.filter(c=>c.life>0&&c.x<W&&c.y<H);requestAnimationFrame(draw)
+  }
+  resize();initStars();draw();
+  window.addEventListener('resize',()=>{resize();initStars()});
 
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  function initStars() {
-    stars = Array.from({length: 200}, () => ({
-      x: Math.random() * W, y: Math.random() * H,
-      r: Math.random() * 1.2,
-      a: Math.random(),
-      speed: .0005 + Math.random() * .001
-    }));
-  }
-  function drawStars() {
-    ctx.clearRect(0, 0, W, H);
-    stars.forEach(s => {
-      s.a = .3 + .7 * Math.abs(Math.sin(Date.now() * s.speed));
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(200,225,255,${s.a})`;
-      ctx.fill();
-    });
-    requestAnimationFrame(drawStars);
-  }
-  resize(); initStars(); drawStars();
-  window.addEventListener('resize', () => { resize(); initStars(); });
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-  /* ── SCROLL REVEAL ── */
-  const reveals = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: .12 });
-  reveals.forEach(el => obs.observe(el));
-
-  /* ── LIGHTBOX ── */
-  function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').classList.add('open');
-  }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-  }
+  function openLightbox(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open')}
+  function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
 </script>
 </body>
 </html>
